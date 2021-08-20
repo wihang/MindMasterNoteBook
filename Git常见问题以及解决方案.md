@@ -100,3 +100,67 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 ​	输入这一行命令就可以完美解决了
 
 ​	git config core.autocrlf false
+
+## Git clone 到本地文件出错，SSH秘钥配置错误 Please make sure you have the correct access rights
+
+
+
+问题:
+Please make sure you have the correct access rights and the repository exists 
+
+请确保您具有正确的访问权限并且存储库存在
+
+![img](https://img-blog.csdnimg.cn/20200812202258465.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzA1MTMx,size_16,color_FFFFFF,t_70)
+
+原因:
+公钥出问题了,需要删除.ssh下文件,然后重设置用户名和邮箱再重新生成ssh公钥即可解决
+
+ 
+
+解决:步骤一:删除.ssh下所有所有文件
+
+![img](https://img-blog.csdnimg.cn/20200812230450785.png)
+
+步骤二:
+
+![img](https://img-blog.csdnimg.cn/20200812231114828.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzA1MTMx,size_16,color_FFFFFF,t_70)
+
+```tex
+1.设置用户名
+
+git config --global user.name ‘zhandehuang’
+
+2.设置用户名邮箱
+
+git config --global user.email ‘it_zdh@163.com’
+
+3.查看设置
+
+git config --list
+```
+
+ ![img](https://img-blog.csdnimg.cn/20200812231212512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzA1MTMx,size_16,color_FFFFFF,t_70)
+
+ 
+
+然后继续输入命令:修改后面的邮箱即可
+
+```tex
+ssh-keygen -t rsa -C "it_zdh@163.com"
+```
+
+![img](https://img-blog.csdnimg.cn/20200812231212512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzA1MTMx,size_16,color_FFFFFF,t_70)
+
+ 
+
+配置:github
+
+
+
+配置SSH
+
+![img](https://img-blog.csdnimg.cn/20200812212021985.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNzA1MTMx,size_16,color_FFFFFF,t_70)
+
+ 
+
+- 完成
