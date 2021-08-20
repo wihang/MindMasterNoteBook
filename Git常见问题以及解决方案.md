@@ -89,3 +89,14 @@ You can initialize this repository with code from a Subversion, Mercurial, or TF
 
 ---
 
+#### [关于git报 warning: LF will be replaced by CRLF in README.md.的警告的解决办法](https://www.cnblogs.com/h-flower/p/11212502.html)
+
+​	在使用git把代码上传至仓库时，会有下面这种警告：
+
+![img](https://img2018.cnblogs.com/blog/1551991/201907/1551991-20190719120746350-1369403204.png)
+
+​	虽然说是警告，但是看着真的很碍眼啊，特别是有强迫症的人就更难受了。
+
+​	输入这一行命令就可以完美解决了
+
+​	git config core.autocrlf false
