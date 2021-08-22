@@ -7,6 +7,8 @@
 `Git`(读音为/gɪt/)。是一个`开源的` `分布式版本控制系统`，可以有效、高速地处理从很小到非常大的项目版本管理。
 Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。
 
+---
+
 ### 二.安装Git
 
 1.由于官网下载速度很慢，我这里直接贴出来[百度网盘下载地址](https://pan.baidu.com/s/1IJwH-4QqeAPJTYrylU-0Bw)，下载后得到需要的Git安装文件。
@@ -14,6 +16,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 2.`双击安装程序`，现在我们对Git还没有深入了解，所以直接一路点击下一步，全部按照默认配置安装。
 3.安装完成后`开始菜单`中找到`Git Bash`点开。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029120003733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
+
+---
 
 ### 三、使用Git — 设置使用者的信息
 
@@ -27,6 +31,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 7.如果想要取消掉当前的用户重新设置新的用户名和邮箱可以使用`git config --global --unset user.name "想要取消的用户名"`，`git config --global --unset user.email "想要取消的邮箱"`这两条命令进行取消，然后再通过`步骤5`重新设置用户名和邮箱。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029125617242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 
+---
+
 ### 四、使用Git — 创建本地库
 
 `补充知识：`版本库又名仓库，英文名`repository`,你可以简单的理解为一个目录，这个目录里面的所有文件都可以被`Git`管理起来，每个文件的修改，删除，Git都能跟踪，以便任何时刻都可以追踪历史，或者在将来某个时刻还可以将文件”还原”；这也是Git的强大之处。
@@ -38,6 +44,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 这时候我们发现当前目录下会多了一个`.git`的目录，这个目录是Git来跟踪管理版本的，除非你明确知道自己在干什么，否则最好不要动这个目录里面的文件。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029132028391.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 `补充知识：`所有的版本控制系统，都能跟踪文本文件的改动，比如txt文件，网页，所有程序的代码等，Git也不列外，版本控制系统可以告诉你每次的改动，但是图片，视频这些二进制文件，虽能也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动记录下来，也就是知道图片从1kb变成2kb，但是到底改了什么，版本控制也不知道。
+
+---
 
 ### 五、使用Git — 文件入库
 
@@ -64,6 +72,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 11.我们想看一下readme.txt到底改了什么内容，可以使用`git diff readme.txt`![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029143128802.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 从这里我们可以详细看到有哪些内容变动了。
 清楚了被改动的地方，我们可以放心的提交到版本库了，使用`git add readme.txt`和`git commit -m " 增加了一行2222"`两条命令。
+
+---
 
 ### 六、使用Git — 版本回退
 
@@ -102,6 +112,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 再使用`git commit`一次性提交到分支上，如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/201910291533357.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 
+---
+
 ### 七、使用Git — 撤销修改和删除文件
 
 16.撤销修改
@@ -135,6 +147,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 这时候我们可以看一下工作区的b.txt又回来了，如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029161035822.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 
+---
+
 ### 八：创建SSH Key
 
 1.注册GitHub账号。
@@ -162,6 +176,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 接下来我们就可以看到我们新加的SSH key了，如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029165245205.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 
+---
+
 ### 九、添加远程库
 
 需求是：我们有本地的Git仓库，又想在GitHub中创建一个Git仓库，并且希望这两个仓库进行远程同步，这样GitHub的仓库别人就可以来写作了。
@@ -183,6 +199,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029171833850.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 现在开始，只要本地有commit，就可以使用`git push origin master`把本地master分支的最新修改交托给GitHub上了，现在就真正意义上的拥有了分布式版本库了。
 
+---
+
 ### 十、从GitHub上克隆
 
 【标题九】讲述了先有本地库更新，后有远程库。
@@ -197,6 +215,8 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029174609492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 打开我们拉下来的文件夹就可以看到：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029174829232.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
+
+---
 
 ### 十一、创建与合并分支
 
@@ -271,6 +291,8 @@ vscode默认给我们几个选项，我点击了`采用当前更改`按钮，变
 删除dev之后我们发现在最后的log中还有dev的操作。
 分支策略：master主分支应该是非常稳定的，也是用来发布的新版本，一般情况下干活都不在master分支上干，都是在新建的分支上，干完之后需要发布，或者说新建分支代码稳定之后可以合并到主分支master上。
 
+---
+
 ### 十二、bug分支
 
 在开发过程中，bug问题是不能避免的，那么有了bug就需要修复，在Git中，由于拥有强大的分支，每个bug我们都可以通过一个临时分支来修复，修复完成之后合并分支，然后将临时的分支删除掉。
@@ -289,6 +311,8 @@ vscode默认给我们几个选项，我点击了`采用当前更改`按钮，变
 1`git stash apply`，这种恢复方式恢复后stash内容并不删除，需要使用`git stash drop`来删除。
 2另一种方式是使用`git stash pop`，恢复的同时把stash内容也删除了。
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029201450316.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
+
+---
 
 ### 十三、多人协作
 
