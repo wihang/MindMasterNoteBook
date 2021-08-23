@@ -143,3 +143,11 @@ $ git push origin main
 
 **·** git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
 
+
+
+|            | 新增文件 | 修改文件 | 删除文件 |
+| :--------: | :------: | :------: | :------: |
+| git add .  |    √     |    √     |    ×     |
+| git add -u |    ×     |    √     |    √     |
+| git add -A |    √     |    √     |    √     |
+
