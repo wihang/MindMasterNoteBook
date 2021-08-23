@@ -158,7 +158,7 @@ Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个�
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029162721200.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 看看这个目录下有没有`id_rsa`和`id_rsa.pub`这两个文件，如果有（那就奇了怪了！），一般第一次使用是没有的，真有的话可以直接跳过下面的命令。
 
-打开命令行，执行命令：`ssh-keygen -t rsa -C "dmneil7o@icloud.com"`邮箱是自己GitHub账号;它会让你选择路径，还会让你设置密码，这里最好全部都按照默认，一路回车下去，如下：
+打开命令行，执行命令：==`ssh-keygen -t rsa -C "dmneil7o@icloud.com"`==邮箱是自己GitHub账号;它会让你选择路径，还会让你设置密码，这里最好全部都按照默认，一路回车下去，如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029163434970.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
 这时候我们再次打开家目录，会发现有一个`.ssh`文件夹，如下：
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20191029163716555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM4NzI3ODQ3,size_16,color_FFFFFF,t_70)
