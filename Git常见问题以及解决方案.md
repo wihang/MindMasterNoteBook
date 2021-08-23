@@ -115,8 +115,6 @@ Please make sure you have the correct access rights and the repository exists
 原因:
 公钥出问题了,需要删除.ssh下文件,然后重设置用户名和邮箱再重新生成ssh公钥即可解决
 
- 
-
 解决:步骤一:删除.ssh下所有所有文件
 
 ![img](https://img-blog.csdnimg.cn/20200812230450785.png)
@@ -166,4 +164,75 @@ ssh-keygen -t rsa -C "it_zdh@163.com"
 - 完成
 
 ---
+
+##  git与gtihub 连接的问题
+
+### git 与github生成秘钥来进行连接仓库从而进行文件拷贝到本地
+
+ssh-keygen -t rsa -C "你自己的邮箱" 
+
+---
+
+### git 在连接前需要设置邮箱和账号名称的输入
+
+git config --global user.email "you@example.com"
+
+git config --global user.name  "your name"
+
+---
+
+### 文件上传失败：ssh: connect to host github.com port 22: Connection timed out
+
+
+
+碰到了git拉代码时报出的一个错误
+
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190815175735686.png)
+
+通过查阅资料尝试了几种方法之后解决了，在这做个记录。
+
+首先需要检查一下SSH是否能够连接成功，输入以下命令
+
+```tex
+ssh -T git@github.com
+```
+
+若还是报这个错ssh: connect to host github.com port 22: Connection timed out就可以使用以下解决办法
+
+```tex
+第一步：打开终端并打开存放ssh的目录
+```
+
+
+cd ~/.ssh
+
+ls
+![在这里插入图片描述](https://img-blog.csdnimg.cn/201908151803047.png)
+
+查看是否存在这些文件 若不存在，则可能是ssh没配置对，首先需要配置ssh（自行百度）很简单
+若存在则在继续在终端输入以下命令新建一个文件
+vim config
+
+接着输入下面内容
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20190815180841531.png)
+
+```tex
+Host github.com
+User 注册github的邮箱
+Hostname ssh.github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa
+Port 443
+```
+
+最后:wq退出编辑即可
+接着再执行
+
+```tex
+ssh -T git@github.com
+```
+
+出现提示回车yes即可
+
+
 
