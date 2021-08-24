@@ -687,6 +687,70 @@ int j = ++i + i++ + ++i + ++i + i++;
 
 #### 关系操作符
 
+关系操作符:比较两个变量之间的关系
+\> 大于
+\>= 大于或等于
+< 小于
+<= 小于或等于
+== 是否相等
+!= 是否不等
+
+
+
+
+
+ 示例 **1** : 
+
+##### 关系操作符
+
+[**顶**](https://how2j.cn/k/operator/operator-relational/266.html#)[**折**](https://how2j.cn/k/operator/operator-relational/266.html#nowhere)
+
+\> 大于
+\>= 大于或等于
+< 小于
+<= 小于或等于
+== 是否相等
+!= 是否不等
+
+代码比较复制代码
+
+```Java
+public class HelloWorld {
+    public static void main(String[] args) {
+       int a = 5;
+       int b = 6;
+       int c = 5;
+        
+       System.out.println(a>b);  //返回 false
+       System.out.println(a>=c);  //返回 true
+        
+       System.out.println(a==b); //返回false
+       System.out.println(a!=b);//返回true
+        
+}
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-关系操作符 
+
+  [**顶**](https://how2j.cn/k/operator/operator-relational/266.html#)[**折**](https://how2j.cn/k/operator/operator-relational/266.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-relational/266.html#nowhere)
+
+借助[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html)获取控制台输入的两个任意数字，然后使用
+\> 大于
+\>= 大于或等于
+< 小于
+<= 小于或等于
+== 是否相等
+!= 是否不等
+
+判断两个值之间的关系
+
+![练习-关系操作符](https://stepimagewm.how2j.cn/2147.png)
+
 #### 逻辑操作符
 
 #### 位操作符
