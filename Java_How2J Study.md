@@ -912,8 +912,388 @@ public class HelloWorld {
 
 #### 位操作符
 
+位操作符在实际工作中用的**并不常见**，但是同学们总是**很喜欢纠结**这些位操作。
+
+所以本章节会给出每一个操作符的操作实例帮助大家理解其具体含义。
+
+最后说，如果确实感兴趣，就看看，个人建议跳过这个章节。 真正工作用到了，再来看。
+
+
+
+ 示例 **1** : 
+
+##### 一个整数的二进制表达
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+位操作都是对二进制而言的，但是我们平常使用的都是十进制比如5。
+而5的二进制是101。
+所以在开始学习之前，需要掌握一个整数的二进制表达是多少。
+通过Integer.toBinaryString() 方法，将一个十进制整数转换为一个二进制字符串
+
+![一个整数的二进制表达](https://stepimagewm.how2j.cn/1066.png)
+
+代码比较复制代码
+
+```JAVA
+public class HelloWorld {
+    public static void main(String[] args) {
+        int i = 5;
+        String b = (Integer.toBinaryString(i)); // 5的二进制的表达101
+        System.out.println(i+" 的二进制表达是: "+b);
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 位或
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+5的二进制是101
+6的二进制是110
+所以 5|6 对每一位进行或运算，得到 111->7
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        int i  =5;
+        int j = 6;
+         
+        System.out.println(Integer.toBinaryString(i)); //5的二进制是101
+         
+        System.out.println(Integer.toBinaryString(j)); //6的二进制是110
+         
+        System.out.println(i|j); //所以 5|6 对每一位进行或运算，得到 111->7
+ 
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### 位与
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+5的二进制是101
+6的二进制是110
+所以 5&6 对每一位进行与运算，得到 100->4
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        int i  =5;
+        int j = 6;
+         
+        System.out.println(Integer.toBinaryString(i)); //5的二进制是101
+         
+        System.out.println(Integer.toBinaryString(j)); //6的二进制是110
+         
+        System.out.println(i&j); //所以 5&6 对每一位进行与运算，得到 100->4
+ 
+    }
+}
+```
+
+
+
+ 示例 **4** : 
+
+##### 异或
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+5的二进制是101
+6的二进制是110
+所以 5^6 对每一位进行异或运算，得到 011->3
+
+一些特别情况：
+任何数和自己进行异或 都等于 0
+任何数和0 进行异或 都等于自己
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int i  =5;
+        int j = 6;
+        System.out.println(Integer.toBinaryString(i)); //5的二进制是 101
+        System.out.println(Integer.toBinaryString(j)); //6的二进制是110
+        System.out.println(i^j); //所以 5^6 对每一位进行或运算，得到 011->3
+         
+        System.out.println(i^0);
+        System.out.println(i^i);
+    }
+}
+```
+
+
+
+ 示例 **5** : 
+
+##### 取非
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+5 的二进制是 00000101
+所以取反即为 11111010
+这个二进制换算成十进制即为-6
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        byte i  =5;
+         
+        System.out.println(Integer.toBinaryString(i)); //5的二进制是00000101,所以取非即为11111010,即为-6
+         
+        System.out.println(~i);
+         
+    }
+     
+}
+```
+
+
+
+ 示例 **6** : 
+
+##### 左移 右移
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+左移：根据一个整数的二进制表达，将其每一位都向左移动，最右边一位补0
+右移：根据一个整数的二进制表达，将其每一位都向右移动
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        byte i  =6;
+         
+        //6的二进制是110
+        System.out.println(Integer.toBinaryString(i));
+        //6向左移1位后，变成1100，对应的10进制是12
+        System.out.println(i<<1);
+        //6向右移1位后，变成11，对应的10进制是3
+        System.out.println(i>>1);
+    }
+     
+}
+```
+
+
+
+ 示例 **7** : 
+
+##### 练习-快速计算2x16 
+
+  [**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+不用乘法符号(*) 计算 2x16
+
+
+
+ 示例 **8** : 
+
+##### 答案-快速计算2x16 
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+查看答案 在查看答案前，尽量先自己完成，碰到问题再来查看答案，收获会更多
+
+ 示例 **9** : 
+
+##### 带符号右移与无符号右移
+
+[**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+**带符号右移 >>**
+对于正数， 带符号右移 >> 会把所有的位右移，并在最前面补0
+对于负数， 带符号右移 >> 会把所有的位右移，并在最前面补1
+**无符号右移>>>**
+如果是一个负数，那么对应的二进制的第一位是1
+无符号右移>>>会把第一位的1也向右移动，导致移动后，第一位变成0
+这样就会使得负数在无符号右移后，得到一个正数
+**
+简单的说：**
+**带符号右移 >>** 移动后正的还是正的，负的还是负的,**符号不变**
+**无符号右移>>>**移动后，**变正的了**
+
+代码比较复制代码
+
+[代码行数较多，请点击查看 ![img](https://static.how2j.cn/code.png)](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+
+
+ 示例 **10** : 
+
+##### 练习-位操作符 
+
+  [**顶**](https://how2j.cn/k/operator/operator-bitwise/270.html#)[**折**](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-bitwise/270.html#nowhere)
+
+ 
+
+int i = 3; // 二进制是11
+
+int j = 2; // 二进制是10
+
+int c = ((i | j) ^ (i & j)) << 2 >>> 1;
+
+ 
+
+
+
+心算答案，不要一来就放在eclipse中计算结果
+
+---
+
 #### 赋值操作符
+
+ 示例 **1** : 
+
+##### 赋值操作
+
+[**顶**](https://how2j.cn/k/operator/operator-assignment/268.html#)[**折**](https://how2j.cn/k/operator/operator-assignment/268.html#nowhere)
+
+赋值操作的操作顺序是从右到左
+int i = 5+5;
+首先进行5+5的运算，得到结果10，然后把10这个值，赋给i
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int i = 5+5;
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 对本身进行运算，并赋值
+
+[**顶**](https://how2j.cn/k/operator/operator-assignment/268.html#)[**折**](https://how2j.cn/k/operator/operator-assignment/268.html#nowhere)
+
++=即自加
+i+=2;
+等同于
+i=i+2;
+其他的 -= , *= , /= , %= , &= , |= , ^= , >>= , >>>= 都是类似，不做赘述
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int i =3;
+        i+=2;
+        System.out.println(i);
+         
+        int j=3;
+        j=j+2;
+        System.out.println(j);     
+ 
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### 练习-赋值操作符 
+
+  [**顶**](https://how2j.cn/k/operator/operator-assignment/268.html#)[**折**](https://how2j.cn/k/operator/operator-assignment/268.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-assignment/268.html#nowhere)
+
+ 
+
+int i = 1;
+
+i+=++i;
+
+ 
+
+
+心算i的值是？
+
+---
 
 #### 三元操作符
 
+?:
+
+ 示例 **1** : 
+
+##### 三元操作符
+
+[**顶**](https://how2j.cn/k/operator/operator-ternary/269.html#)[**折**](https://how2j.cn/k/operator/operator-ternary/269.html#nowhere)
+
+表达式?值1:值2
+如果表达式为真 返回值1
+如果表达式为假 返回值2
+
+关于[if语句](https://how2j.cn/k/control-flow/control-flow-if/271.html)的详解讲解在[后面章节](https://how2j.cn/k/control-flow/control-flow-if/271.html)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+ 
+        int i = 5;
+        int j = 6;
+ 
+        int k = i < j ? 99 : 88;
+ 
+        // 相当于
+        if (i < j) {
+            k = 99;
+        } else {
+            k = 88;
+        }
+ 
+        System.out.println(k);
+ 
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-判断是否是工作日 
+
+  [**顶**](https://how2j.cn/k/operator/operator-ternary/269.html#)[**折**](https://how2j.cn/k/operator/operator-ternary/269.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-ternary/269.html#nowhere)
+
+通过[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html)输入一个**1-7**之间的整数，使用三元操作符判断是工作日还是周末？
+
+![练习-判断是否是工作日](https://stepimagewm.how2j.cn/2154.png)
+
+
+
+ 示例 **3** : 
+
+## 
+
 #### 操作符Scanner
+
