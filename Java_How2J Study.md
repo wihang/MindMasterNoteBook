@@ -753,6 +753,163 @@ public class HelloWorld {
 
 #### 逻辑操作符
 
+##### 逻辑运算符
+
+ 示例 **1** : 
+
+##### 长路与 和 短路与
+
+[**顶**](https://how2j.cn/k/operator/operator-logic/267.html#)[**折**](https://how2j.cn/k/operator/operator-logic/267.html#nowhere)
+
+无论长路与还是短路与
+两边的运算单元都是布尔值
+都为真时，才为真
+任意为假，就为假
+区别
+长路与 两侧，都会被运算
+短路与 只要第一个是false，第二个就不进行运算了
+
+![长路与 和 短路与](https://stepimagewm.how2j.cn/537.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        //长路与  无论第一个表达式的值是true或者false,第二个的值，都会被运算
+        int i = 2;
+        System.out.println( i== 1 & i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
+        System.out.println(i);
+         
+        //短路与 只要第一个表达式的值是false的，第二个表达式的值，就不需要进行运算了
+        int j = 2;
+        System.out.println( j== 1 && j++ ==2  );  //因为j==1返回false,所以右边的j++就没有执行了，所以j的值，还是2
+        System.out.println(j);     
+         
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 长路或 和 短路或
+
+[**顶**](https://how2j.cn/k/operator/operator-logic/267.html#)[**折**](https://how2j.cn/k/operator/operator-logic/267.html#nowhere)
+
+无论长路或还是短路或
+两边的运算单元都是布尔值
+都为假时，才为假
+任意为真，就为真
+区别
+长路或 两侧都会被运算
+短路或 只要第一个是true的，第二个就不进行运算了
+
+![长路或 和 短路或](https://stepimagewm.how2j.cn/538.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        //长路或  无论第一个表达式的值是true或者false,第二个的值，都会被运算
+        int i = 2;
+        System.out.println( i== 1 | i++ ==2  ); //无论如何i++都会被执行，所以i的值变成了3
+        System.out.println(i);
+         
+        //短路或 只要第一个表达式的值是true的，第二个表达式的值，就不需要进行运算了
+        int j = 2;
+        System.out.println( j== 2 || j++ ==2  );  //因为j==2返回true,所以右边的j++就没有执行了，所以j的值，还是2
+        System.out.println(j);     
+         
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### 取反
+
+[**顶**](https://how2j.cn/k/operator/operator-logic/267.html#)[**折**](https://how2j.cn/k/operator/operator-logic/267.html#nowhere)
+
+取反!
+真变为假
+假变为真
+
+代码比较复制代码
+
+```java 
+public class HelloWorld {
+    public static void main(String[] args) {
+        boolean b = true;
+         
+        System.out.println(b); //输出true
+        System.out.println(!b);//输出false
+         
+    }
+}
+```
+
+
+
+ 示例 **4** : 
+
+##### 异或^
+
+[**顶**](https://how2j.cn/k/operator/operator-logic/267.html#)[**折**](https://how2j.cn/k/operator/operator-logic/267.html#nowhere)
+
+异或^
+不同，返回真
+相同，返回假
+
+![异或^](https://stepimagewm.how2j.cn/540.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        boolean a = true;
+        boolean b = false;
+         
+        System.out.println(a^b); //不同返回真
+        System.out.println(a^!b); //相同返回假
+ 
+    }
+}
+```
+
+
+
+ 示例 **5** : 
+
+##### 练习-逻辑操作符 
+
+  [**顶**](https://how2j.cn/k/operator/operator-logic/267.html#)[**折**](https://how2j.cn/k/operator/operator-logic/267.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/operator/operator-logic/267.html#nowhere)
+
+ ```tex
+ int i = 1;
+ 
+ boolean b = !(i++ == 3) ^ (i++ ==2) && (i++==3);
+ 
+ System.out.println(b);
+ 
+ System.out.println(i);
+ ```
+
+ 
+
+输出结果是？
+
+
+
+##### 答案-逻辑操作符 
+
+---
+
 #### 位操作符
 
 #### 赋值操作符
