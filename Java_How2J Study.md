@@ -1,4 +1,4 @@
-# Java_How2J Study
+# 
 
 [toc]
 
@@ -1296,4 +1296,352 @@ public class HelloWorld {
 ## 
 
 #### 操作符Scanner
+
+ 步骤 **1** : 
+
+##### 使用Scanner读取整数
+
+[**顶**](https://how2j.cn/k/operator/operator-scanner/658.html#)[**折**](https://how2j.cn/k/operator/operator-scanner/658.html#nowhere)
+
+注意： 使用Scanner类，需要在最前面加上
+
+ 
+
+import java.util.Scanner;
+
+ 
+
+
+表示导入这个类，才能够正常使用
+
+![使用Scanner读取整数](https://stepimagewm.how2j.cn/2143.png)
+
+代码比较复制代码
+
+```java
+import java.util.Scanner;
+ 
+public class HelloWorld {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int a = s.nextInt();
+        System.out.println("第一个整数："+a);
+        int b = s.nextInt();
+        System.out.println("第二个整数："+b);
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 使用Scanner读取浮点数
+
+[**顶**](https://how2j.cn/k/operator/operator-scanner/658.html#)[**折**](https://how2j.cn/k/operator/operator-scanner/658.html#nowhere)
+
+![使用Scanner读取浮点数](https://stepimagewm.how2j.cn/2157.png)
+
+代码比较复制代码
+
+```java
+import java.util.Scanner;
+  
+public class HelloWorld {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        float a = s.nextFloat();
+        System.out.println("读取的浮点数的值是："+a);
+ 
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 使用Scanner读取字符串
+
+[**顶**](https://how2j.cn/k/operator/operator-scanner/658.html#)[**折**](https://how2j.cn/k/operator/operator-scanner/658.html#nowhere)
+
+![使用Scanner读取字符串](https://stepimagewm.how2j.cn/2330.png)
+
+代码比较复制代码
+
+```java
+import java.util.Scanner;
+  
+public class HelloWorld {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        String a = s.nextLine();
+        System.out.println("读取的字符串是："+a);
+    }
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 读取了整数后，接着读取字符串
+
+[**顶**](https://how2j.cn/k/operator/operator-scanner/658.html#)[**折**](https://how2j.cn/k/operator/operator-scanner/658.html#nowhere)
+
+需要注意的是，如果在通过nextInt()读取了整数后，再接着读取字符串，读出来的是回车换行:"\r\n",因为nextInt仅仅读取数字信息，而不会**读取**回车换行"\r\n".
+
+所以，如果在业务上需要读取了整数后，接着读取字符串，那么就应该连续执行两次nextLine()，第一次是取走回车换行，第二次才是读取真正的字符串
+
+![读取了整数后，接着读取字符串](https://stepimagewm.how2j.cn/2333.png)
+
+代码比较复制代码
+
+```java
+import java.util.Scanner;
+   
+public class HelloWorld {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int i = s.nextInt();
+        System.out.println("读取的整数是"+ i);
+        String rn = s.nextLine();
+        String a = s.nextLine();
+        System.out.println("读取的字符串是："+a);
+    }
+}
+```
+
+---
+
+### 控制流程
+
+控制流程if
+
+#### if
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+ 
+
+if(表达式1){
+
+  表达式2；
+
+}
+
+ 
+
+
+如果表达式1的值是true,
+就执行表达式2
+
+![if](https://stepimagewm.how2j.cn/551.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        boolean b = true;
+        //如果成立就打印yes
+        if(b){
+            System.out.println("yes");
+        }
+         
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 多表达式与一个表达式
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        boolean b = false;
+        //如果有多个表达式，必须用大括弧包括起来
+        if(b){
+            System.out.println("yes1");
+            System.out.println("yes2");
+            System.out.println("yes3");
+        }
+         
+        //否则表达式2 3 无论b是否为true都会执行
+         
+        if(b)
+            System.out.println("yes1");
+            System.out.println("yes2");
+            System.out.println("yes3");
+             
+        //如果只有一个表达式可以不用写括弧，看上去会简约一些
+        if(b){
+            System.out.println("yes1");
+        }
+         
+        if(b)
+            System.out.println("yes1");
+         
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### if 使用过程中可能遇到的坑
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+在第6行，if后面有一个分号; 而[分号也是一个完整的表达式](https://how2j.cn/k/variable/variable-express/277.html#step557)
+如果b为true，会执行这个分号，然后打印yes
+如果b为false，不会执行这个分号，然后打印yes
+这样，看上去无论如何都会打印yes
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+ 
+        boolean b = false;
+ 
+        if (b);
+            System.out.println("yes");
+ 
+    }
+}
+```
+
+
+
+ 示例 **4** : 
+
+##### if else
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+else 代表不成立的情况
+
+![if else](https://stepimagewm.how2j.cn/552.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+ 
+        boolean b = false;
+ 
+        if (b)
+            System.out.println("yes");
+        else
+            System.out.println("no");
+ 
+    }
+}
+```
+
+
+
+ 示例 **5** : 
+
+##### else if
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+else if 是多条件判断
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+ 
+        //如果只使用 if,会执行4次判断
+        int i = 2;
+        if (i==1)
+            System.out.println(1);
+        if (i==2)
+            System.out.println(2);
+        if (i==3)
+            System.out.println(3);
+        if (i==4)
+            System.out.println(4);
+         
+        //如果使用else if, 一旦在18行，判断成立， 20行和22行的判断就不会执行了，节约了运算资源
+        if (i==1)
+            System.out.println(1);
+        else if (i==2)
+            System.out.println(2);
+        else if (i==3)
+            System.out.println(3);
+        else if (i==4)
+            System.out.println(4);     
+         
+    }
+}
+```
+
+
+
+ 示例 **6** : 
+
+##### 练习-BMI 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+基于前面的[操作符练习-BMI](https://how2j.cn/k/operator/operator-arithmetic/265.html#step2155)，做基于判断的改进：
+
+使用[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html)收集你的身高体重，并计算出你的BMI值是多少
+
+BMI的计算公式是 体重(kg) / (身高*身高)
+
+比如邱阳波的体重是72kg, 身高是1.69，那么这位同学的BMI就是
+72 / (1.69*1.69) = ?
+
+然后通过条件判断BMI的范围，打印出是超重还是正常
+
+参考: [使用Scanner读取浮点数的办法](https://how2j.cn/k/operator/operator-scanner/658.html#step2157)
+
+![练习-BMI](https://stepimagewm.how2j.cn/2161.png)
+
+
+
+ 示例 **7** : 
+
+##### 练习-闰年 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-if/271.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-if/271.html#nowhere)
+
+判断某一年是否为闰年
+通过[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html#step2143) 输入一个年份，然后判断该年是否是闰年
+
+闰年判断标准(满足任何一个)
+\1. 如果能够被4整除，但是不能被100整除
+\2. 能够被400整除
+
+![练习-闰年](https://stepimagewm.how2j.cn/2166.png)
+
+#### 控制流程Switch
+
+#### 控制流程while
+
+#### 控制流程for
+
+#### 控制流程continue
+
+#### 控制流程break
+
+#### 控制流程结束外部循环
 
