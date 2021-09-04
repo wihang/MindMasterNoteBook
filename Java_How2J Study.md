@@ -1635,13 +1635,532 @@ BMI的计算公式是 体重(kg) / (身高*身高)
 
 #### 控制流程Switch
 
+ 示例 **1** : 
+
+##### switch
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-switch/272.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-switch/272.html#nowhere)
+
+switch可以使用byte,short,int,char,String,enum
+
+**注:** 每个表达式结束，都应该有一个break;
+**注:** String在Java1.7之前是不支持的, Java从1.7开始支持switch用String的，编译后是把String转化为hash值，其实还是整数
+**注:** enum是枚举类型，在[枚举](https://how2j.cn/k/class-object/class-object-enum/678.html)章节有详细讲解
+
+
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        //如果使用if else
+        int day = 5;
+        if (day==1)
+            System.out.println("星期一");
+              
+        else if (day==2)
+            System.out.println("星期二");
+        else if (day==3)
+            System.out.println("星期三");
+        else if (day==4)
+            System.out.println("星期四");
+        else if (day==5)
+            System.out.println("星期五");
+        else if (day==6)
+            System.out.println("星期六");
+        else if (day==7)
+            System.out.println("星期天");
+        else
+            System.out.println("这个是什么鬼？");
+         
+        //如果使用switch
+        switch(day){
+            case 1:
+                System.out.println("星期一");
+                break;
+            case 2:
+                System.out.println("星期二");
+                break;
+            case 3:
+                System.out.println("星期三");
+                break;
+            case 4:
+                System.out.println("星期四");
+                break;
+            case 5:
+                System.out.println("星期五");
+                break;
+            case 6:
+                System.out.println("星期六");
+                break;
+            case 7:
+                System.out.println("星期天");
+                break;
+            default:
+                System.out.println("这个是什么鬼？");
+        }
+         
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-季节 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-switch/272.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-switch/272.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-switch/272.html#nowhere)
+
+通过[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html#step2143) 输入月份，然后使用switch 判断季节
+
+![练习-季节](https://stepimagewm.how2j.cn/2168.png)
+
 #### 控制流程while
+
+ 示例 **1** : 
+
+##### 条件为true时 重复执行
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-while/273.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-while/273.html#nowhere)
+
+只要while中的表达式成立，就会不断地循环执行
+
+![条件为true时 重复执行](https://stepimagewm.how2j.cn/560.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        //打印0到4    
+        int i = 0;
+        while(i<5){
+            System.out.println(i);
+            i++;
+        }
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 条件为true时 重复执行，至少会执行一次
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-while/273.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-while/273.html#nowhere)
+
+ 
+
+do{
+
+} while 循环
+
+ 
+
+
+与while的区别是，无论是否成立，先执行一次，再进行判断
+
+![条件为true时 重复执行，至少会执行一次](https://stepimagewm.how2j.cn/561.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+         
+        //打印0到4
+        //与while的区别是，无论是否成立，先执行一次，再进行判断
+        int i = 0;
+        do{
+            System.out.println(i);
+            i++;           
+        } while(i<5);
+         
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### 练习-阶乘 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-while/273.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-while/273.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-while/273.html#nowhere)
+
+通过[Scanner](https://how2j.cn/k/operator/operator-scanner/658.html#step2143) 获取一个整数，然后使用while计算这个整数的阶乘
+
+N的阶乘等于 N* (N-1) * (N-2) * ... * 1
+
+![练习-阶乘](https://stepimagewm.how2j.cn/2170.png)
+
+答案：
+
+```java
+ Scanner scanner = new Scanner(System.in);
+        System.out.println("请输入一个数");
+        int n = scanner.nextInt();
+        int i = 1;
+        do {
+            i *= n;
+            n--;
+        } while (n > 0);
+        System.out.println("N的阶乘是：" + i);
+```
+
+
 
 #### 控制流程for
 
+ 示例 **1** : 
+
+##### for
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-for/274.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-for/274.html#nowhere)
+
+比较for和while
+
+![for](https://stepimagewm.how2j.cn/562.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+           
+        //使用while打印0到4    
+        int i = 0;
+        while(i<5){
+            System.out.println("while循环输出的"+i);
+            i++;
+        }
+          
+        //使用for打印0到4    
+        for (int j = 0; j < 5; j++) {
+            System.out.println("for  循环输出的"+j);
+        }
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-乞丐 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-for/274.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-for/274.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-for/274.html#nowhere)
+
+天朝有一个乞丐姓洪，去天桥要钱
+第一天要了1块钱
+第二天要了2块钱
+第三天要了4块钱
+第四天要了8块钱
+以此类推
+
+问题： 洪乞丐干10天，收入是多少？
+
+```java
+    public static void main(String[] args) {
+        int rmb=1;
+        int sum = 1;
+        for(int i =2 ; i <= 10;i++){
+            sum += rmb *=2;
+        }
+        System.out.print("第十天的收入为："+sum);
+    }
+
+```
+
+
+
 #### 控制流程continue
+
+ 示例 **1** : 
+
+##### continue
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-continue/275.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-continue/275.html#nowhere)
+
+如果是双数，后面的代码不执行，直接进行下一次循环
+
+![continue](https://stepimagewm.how2j.cn/563.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+          
+        //打印单数    
+        for (int j = 0; j < 10; j++) {
+            if(0==j%2) 
+                continue; //如果是双数，后面的代码不执行，直接进行下一次循环
+             
+            System.out.println(j);
+        }
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-忽略倍数 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-continue/275.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-continue/275.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-continue/275.html#nowhere)
+
+打印 1-100 之间的数，如果这个数，要么是3，要么5的倍数，就忽略掉
+
+![练习-忽略倍数](https://stepimagewm.how2j.cn/2176.png)
 
 #### 控制流程break
 
+ 示例 **1** : 
+
+##### break;
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-break/276.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-break/276.html#nowhere)
+
+直接结束当前for循环
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+          
+        //打印单数    
+        for (int j = 0; j < 10; j++) {
+            if(0==j%2) 
+                break; //如果是双数，直接结束循环
+             
+            System.out.println(j);
+        }
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 练习-百万富翁 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-break/276.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-break/276.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-break/276.html#nowhere)
+
+假设你月收入是3000，除开平时花销，每个月留下1000块钱进行投资。
+
+然后你认真的钻研了 《股票和基金 21天从入门到精通》，达到了每年20%的投资回报率。
+
+那么问题来了，以每个月投资1000块钱的节奏，持续投资多少年，总收入达到100万
+（复利计算按照每年12000投入计算，不按照每月计息）
+
+复利公式：
+F = p* ( (1+r)^n );
+**F** 最终收入
+**p** 本金
+**r** 年利率
+**n** 存了多少年
+
+假设情景一：
+p = 10000
+r = 0.05
+n = 1
+
+解读：
+本金是10000
+年利率是5%
+存了一年 1次
+复利收入 10000*( (1+0.05)^1 ) = 10500
+
+假设情景二：
+p = 10000
+r = 0.05
+n = 2
+
+解读：
+本金是10000
+年利率是5%
+存了两年
+复利收入 10000*( (1+0.05)^2 ) = 11025
+
+```java
+public static void main(String[] args) {
+        float F = 1000000;
+        float p = 12000;
+        float r = 0.2f;
+        float fate = 0.0f;
+        for(int i = 1; i < 100; i++) {
+            fate += Math.pow((1+r), i);
+            if (p * fate > F)
+                break;          
+                System.out.println(i+ "年后的总收入为" + p * fate);
+        }       
+    }
+```
+
+
+
 #### 控制流程结束外部循环
 
+ 示例 **1** : 
+
+##### 结束当前循环
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#nowhere)
+
+break; 只能结束当前循环
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+          
+        //打印单数    
+        for (int i = 0; i < 10; i++) {
+             
+            for (int j = 0; j < 10; j++) {
+                System.out.println(i+":"+j);
+                if(0==j%2) 
+                    break; //如果是双数，结束当前循环
+            }
+             
+        }
+         
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 使用boolean变量结束外部循环
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#nowhere)
+
+借助boolean变量结束外部循环
+需要在内部循环中修改这个变量值
+每次内部循环结束后，都要在外部循环中判断，这个变量的值
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        boolean breakout = false; //是否终止外部循环的标记
+        for (int i = 0; i < 10; i++) {
+ 
+            for (int j = 0; j < 10; j++) {
+                System.out.println(i + ":" + j);
+                if (0 == j % 2) {
+                    breakout = true; //终止外部循环的标记设置为true
+                    break;
+                }
+            }
+            if (breakout) //判断是否终止外部循环
+                break;
+        }
+ 
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### 使用标签结束外部循环
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-break-out/279.html#nowhere)
+
+在外部循环的前一行，加上标签
+在break的时候使用该标签
+即能达到结束外部循环的效果
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+          
+        //打印单数    
+        outloop: //outloop这个标示是可以自定义的比如outloop1,ol2,out5
+        for (int i = 0; i < 10; i++) {
+             
+            for (int j = 0; j < 10; j++) {
+                System.out.println(i+":"+j);
+                if(0==j%2) 
+                    break outloop; //如果是双数，结束外部循环
+            }
+             
+        }
+         
+    }
+}
+```
+
+---
+
+#### 综合练习
+
+ 步骤 **1** : 
+
+##### 练习-黄金分割点 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere)
+
+寻找某两个数相除，其结果 离黄金分割点 0.618最近
+
+分母和分子不能同时为偶数
+分母和分子 取值范围在[1-20]
+
+![练习-黄金分割点](https://stepimagewm.how2j.cn/2178.png)
+
+
+
+ 步骤 **2** : 
+
+##### 答案-黄金分割点 
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere)
+
+查看答案 在查看答案前，尽量先自己完成，碰到问题再来查看答案，收获会更多
+
+ 步骤 **3** : 
+
+##### 练习-水仙花数 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere)
+
+水仙花数定义：
+\1. 一定是3位数
+\2. 每一位的立方，加起来恰好是这个数本身，比如153=1*1*1+5*5*5+3*3*3
+
+寻找所有的水仙花数
+
+
+
+ 步骤 **4** : 
+
+##### 答案-水仙花数 
+
+[**顶**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere)
+
+查看答案 在查看答案前，尽量先自己完成，碰到问题再来查看答案，收获会更多
+
+ 步骤 **5** : 
+
+##### 练习-小学算术题 
+
+  [**顶**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#)[**折**](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/control-flow/control-flow-practise/656.html#nowhere)
+
+提示使用多层循环嵌套解决
+
+![练习-小学算术题](https://stepimagewm.how2j.cn/3434.png)
