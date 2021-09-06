@@ -2164,3 +2164,555 @@ public class HelloWorld {
 提示使用多层循环嵌套解决
 
 ![练习-小学算术题](https://stepimagewm.how2j.cn/3434.png)
+
+---
+
+### 数组
+
+#### 创建数组
+
+数组是一个**固定长度**的，包含了**相同类型**数据的 **容器**
+
+
+
+ 步骤 **1** : 
+
+##### 声明数组
+
+[**顶**](https://how2j.cn/k/array/array-create/280.html#)[**折**](https://how2j.cn/k/array/array-create/280.html#nowhere)
+
+int[] a; 声明了一个数组变量。
+[]表示该变量是一个数组
+int 表示数组里的每一个元素都是一个整数
+a 是变量名
+但是，仅仅是这一句**声明，不会创建数组**
+
+有时候也会写成int a[]; 没有任何区别，就是你看哪种顺眼的问题
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        // 声明一个数组
+        int[] a;
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 创建数组
+
+[**顶**](https://how2j.cn/k/array/array-create/280.html#)[**折**](https://how2j.cn/k/array/array-create/280.html#nowhere)
+
+创建数组的时候，要指明数组的长度。
+new int[5]
+**引用概念：**
+如果变量代表一个数组，比如a,我们把a叫做**引用**
+与基本类型不同
+int c = 5; 这叫给c**赋值**为5
+声明一个引用 int[] a;
+a = new int[5];
+让a这个引用，**指向**数组
+
+![创建数组](https://stepimagewm.how2j.cn/567.png)
+
+代码比较复制代码
+
+```
+public class HelloWorld {
+    public static void main(String[] args) {
+        //声明一个引用
+        int[] a;
+        //创建一个长度是5的数组，并且使用引用a指向该数组
+        a = new int[5];
+         
+        int[] b = new int[5]; //声明的同时，指向一个数组
+         
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 访问数组
+
+[**顶**](https://how2j.cn/k/array/array-create/280.html#)[**折**](https://how2j.cn/k/array/array-create/280.html#nowhere)
+
+数组下标**基0**
+下标0，代表数组里的第一个数
+
+![访问数组](https://stepimagewm.how2j.cn/568.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int[] a;
+        a = new int[5];
+         
+        a[0]= 1;  //下标0，代表数组里的第一个数
+        a[1]= 2;
+        a[2]= 3;
+        a[3]= 4;
+        a[4]= 5;
+    }
+}
+```
+
+
+
+ 步骤 **4** : 
+
+数组长度
+
+[**顶**](https://how2j.cn/k/array/array-create/280.html#)[**折**](https://how2j.cn/k/array/array-create/280.html#nowhere)
+
+**.length属性**用于访问一个数组的长度
+数组访问下标范围是0到长度-1
+一旦超过这个范围,就会产生数组下标越界异常
+
+![数组长度](https://stepimagewm.how2j.cn/570.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int[] a;
+        a = new int[5];
+         
+        System.out.println(a.length); //打印数组的长度
+         
+        a[4]=100; //下标4，实质上是“第5个”，即最后一个
+        a[5]=101; //下标5，实质上是“第6个”，超出范围 ,产生数组下标越界异常
+         
+    }
+}
+```
+
+
+
+ 步骤 **5** : 
+
+##### 练习-数组最小值 
+
+  [**顶**](https://how2j.cn/k/array/array-create/280.html#)[**折**](https://how2j.cn/k/array/array-create/280.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/array/array-create/280.html#nowhere)
+
+首先创建一个长度是5的数组
+然后给数组的每一位赋予随机整数
+通过for循环，遍历数组，找出最小的一个值出来
+
+0-100的 随机整数的获取办法有多种，下面是参考办法之一:
+
+ 
+
+(int) (Math.random() * 100)
+
+ 
+
+
+Math.random() 会得到一个0-1之间的随机浮点数，然后乘以100，并强转为整型即可。
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int[] a = new int[5];
+        a[0] = (int) (Math.random() * 100);
+        a[1] = (int) (Math.random() * 100);
+        a[2] = (int) (Math.random() * 100);
+        a[3] = (int) (Math.random() * 100);
+        a[4] = (int) (Math.random() * 100);
+         
+        System.out.println("数组中的各个随机数是:");
+        for (int i = 0; i < a.length; i++)
+            System.out.println(a[i]);
+         
+        System.out.println("本练习的目的是，找出最小的一个值: ");
+    }
+}
+```
+
+#### 初始化数组
+
+ 步骤 **1** : 
+
+##### 分配空间与赋值分步进行
+
+[**顶**](https://how2j.cn/k/array/array-init/281.html#)[**折**](https://how2j.cn/k/array/array-init/281.html#nowhere)
+
+分配空间与赋值分步进行
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int[] a = new int[5]; //分配了长度是5的数组，但是没有赋值
+         
+        //没有赋值，那么就会使用默认值
+        //作为int类型的数组，默认值是0
+        System.out.println(a[0]);
+         
+        //进行赋值
+     
+        a[0] = 100;
+        a[1] = 101;
+        a[2] = 103;
+        a[3] = 120;
+        a[4] = 140;
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 分配空间，同时赋值
+
+[**顶**](https://how2j.cn/k/array/array-init/281.html#)[**折**](https://how2j.cn/k/array/array-init/281.html#nowhere)
+
+分配空间，同时赋值
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        //写法一： 分配空间同时赋值
+        int[] a = new int[]{100,102,444,836,3236};
+ 
+        //写法二： 省略了new int[],效果一样
+        int[] b = {100,102,444,836,3236};
+         
+        //写法三：同时分配空间，和指定内容
+        //在这个例子里，长度是3，内容是5个，产生矛盾了
+        //所以如果指定了数组的内容，就不能同时设置数组的长度
+        int[] c = new int[3]{100,102,444,836,3236};
+         
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 练习-数组反转 
+
+  [**顶**](https://how2j.cn/k/array/array-init/281.html#)[**折**](https://how2j.cn/k/array/array-init/281.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/array/array-init/281.html#nowhere)
+
+首先创建一个长度是5的数组,并填充随机数。 ([向数组填充随机数](https://how2j.cn/k/array/array-create/280.html#step2182)的办法，[参考这里](https://how2j.cn/k/array/array-create/280.html#step2182))
+
+使用for循环或者while循环，对这个数组实现反转效果
+
+#### 排序
+
+ 步骤 **1** : 
+
+##### 选择法排序
+
+[**顶**](https://how2j.cn/k/array/array-sort/282.html#)[**折**](https://how2j.cn/k/array/array-sort/282.html#nowhere)
+
+选择法排序的思路：
+**把第一位**和其他所有的进行比较，只要比第一位小的，就换到第一个位置来
+比较完后，**第一位就是最小的**
+然后再从**第二位**和剩余的其他所有进行比较，只要比第二位小，就换到第二个位置来
+比较完后，**第二位就是第二小的**
+以此类推
+
+![选择法排序](https://stepimagewm.how2j.cn/573.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int a [] = new int[]{18,62,68,82,65,9};
+        //排序前，先把内容打印出来
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");
+        //选择法排序
+     
+        //第一步： 把第一位和其他所有位进行比较
+        //如果发现其他位置的数据比第一位小，就进行交换
+         
+        for (int i = 1; i < a.length; i++) {
+            if(a[i]<a[0]){  
+                int temp = a[0];
+                a[0] = a[i];
+                a[i] = temp;
+            }
+        }
+        //把内容打印出来
+        //可以发现，最小的一个数，到了最前面
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");
+         
+        //第二步： 把第二位的和剩下的所有位进行比较
+        for (int i = 2; i < a.length; i++) {
+            if(a[i]<a[1]){  
+                int temp = a[1];
+                a[1] = a[i];
+                a[i] = temp;
+            }
+        }
+        //把内容打印出来
+        //可以发现，倒数第二小的数，到了第二个位置
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");       
+         
+        //可以发现一个规律
+        //移动的位置是从0 逐渐增加的
+        //所以可以在外面套一层循环
+         
+        for (int j = 0; j < a.length-1; j++) {
+            for (int i = j+1; i < a.length; i++) {
+                if(a[i]<a[j]){  
+                    int temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
+                }
+            }
+        }
+         
+        //把内容打印出来
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");       
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 冒泡法排序
+
+[**顶**](https://how2j.cn/k/array/array-sort/282.html#)[**折**](https://how2j.cn/k/array/array-sort/282.html#nowhere)
+
+冒泡法排序的思路：
+第一步：从第一位开始，把相邻两位进行比较
+如果发现前面的比后面的大，就把大的数据交换在后面，循环比较完毕后，**最后一位就是最大的**
+第二步： 再来一次，只不过不用比较最后一位
+以此类推
+
+![冒泡法排序](https://stepimagewm.how2j.cn/574.png)
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int a [] = new int[]{18,62,68,82,65,9};
+        //排序前，先把内容打印出来
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");
+        //冒泡法排序
+      
+        //第一步：从第一位开始，把相邻两位进行比较
+        //如果发现前面的比后面的大，就把大的数据交换在后面
+          
+        for (int i = 0; i < a.length-1; i++) {
+            if(a[i]>a[i+1]){  
+                int temp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = temp;
+            }
+        }
+        //把内容打印出来
+        //可以发现，最大的到了最后面
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");
+          
+        //第二步： 再来一次，只不过不用比较最后一位
+        for (int i = 0; i < a.length-2; i++) {
+            if(a[i]>a[i+1]){  
+                int temp = a[i];
+                a[i] = a[i+1];
+                a[i+1] = temp;
+            }
+        }
+        //把内容打印出来
+        //可以发现，倒数第二大的到了倒数第二个位置
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");       
+          
+        //可以发现一个规律
+        //后边界在收缩
+        //所以可以在外面套一层循环
+          
+        for (int j = 0; j < a.length; j++) {
+            for (int i = 0; i < a.length-j-1; i++) {
+                if(a[i]>a[i+1]){  
+                    int temp = a[i];
+                    a[i] = a[i+1];
+                    a[i+1] = temp;
+                }
+            }
+        }
+          
+        //把内容打印出来
+        for (int i = 0; i < a.length; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println(" ");       
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 练习-排序 
+
+  [**顶**](https://how2j.cn/k/array/array-sort/282.html#)[**折**](https://how2j.cn/k/array/array-sort/282.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/array/array-sort/282.html#nowhere)
+
+首先创建一个长度是5的数组,并填充随机数。 ([向数组填充随机数](https://how2j.cn/k/array/array-create/280.html#step2182)的办法，[参考这里](https://how2j.cn/k/array/array-create/280.html#step2182))
+
+首先用选择法正排序，然后再对其使用冒泡法倒排序
+
+**注** 所谓的正排序就是从小到大排序，倒排序就是从大到小排序
+
+#### 增强型for循环
+
+ 步骤 **1** : 
+
+##### 增强型for循环
+
+[**顶**](https://how2j.cn/k/array/array-foreach/330.html#)[**折**](https://how2j.cn/k/array/array-foreach/330.html#nowhere)
+
+注：增强型for循环只能用来取值，却不能用来修改数组里的值
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int values [] = new int[]{18,62,68,82,65,9};
+        //常规遍历
+        for (int i = 0; i < values.length; i++) {
+            int each = values[i];
+            System.out.println(each);
+        }
+         
+        //增强型for循环遍历
+        for (int each : values) {
+            System.out.println(each);
+        }
+         
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 练习-最大值 
+
+  [**顶**](https://how2j.cn/k/array/array-foreach/330.html#)[**折**](https://how2j.cn/k/array/array-foreach/330.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/array/array-foreach/330.html#nowhere)
+
+用增强型for循环找出最大的那个数
+
+#### 复制数组
+
+ 步骤 **1** : 
+
+##### 复制数组
+
+[**顶**](https://how2j.cn/k/array/array-copyarray/284.html#)[**折**](https://how2j.cn/k/array/array-copyarray/284.html#nowhere)
+
+把一个数组的值，复制到另一个数组中
+
+ 
+
+System.arraycopy(src, srcPos, dest, destPos, length)
+
+ 
+
+
+src: 源数组
+srcPos: 从源数组复制数据的起始位置
+dest: 目标数组
+destPos: 复制到目标数组的起始位置
+length: 复制的长度
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int a [] = new int[]{18,62,68,82,65,9};
+         
+        int b[] = new int[3];//分配了长度是3的空间，但是没有赋值
+         
+        //通过数组赋值把，a数组的前3位赋值到b数组
+         
+        //方法一： for循环
+         
+        for (int i = 0; i < b.length; i++) {
+            b[i] = a[i];
+        }
+        
+        //方法二: System.arraycopy(src, srcPos, dest, destPos, length)
+        //src: 源数组
+        //srcPos: 从源数组复制数据的起始位置
+        //dest: 目标数组
+        //destPos: 复制到目标数组的启始位置
+        //length: 复制的长度       
+        System.arraycopy(a, 0, b, 0, 3);
+         
+        //把内容打印出来
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(b[i] + " ");
+        }
+ 
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 练习-合并数组 
+
+  [**顶**](https://how2j.cn/k/array/array-copyarray/284.html#)[**折**](https://how2j.cn/k/array/array-copyarray/284.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/array/array-copyarray/284.html#nowhere)
+
+首先准备两个数组，他俩的长度是5-10之间的随机数，并使用随机数初始化这两个数组
+([向数组填充随机数](https://how2j.cn/k/array/array-create/280.html#step2182)的办法，[参考这里](https://how2j.cn/k/array/array-create/280.html#step2182))
+
+然后准备第三个数组，第三个数组的长度是前两个的和
+通过System.arraycopy 把前两个数组合并到第三个数组中
+
+![练习-合并数组](https://stepimagewm.how2j.cn/2189.png)
+
+#### 二维数组
+
+#### 数组Arrays
+
