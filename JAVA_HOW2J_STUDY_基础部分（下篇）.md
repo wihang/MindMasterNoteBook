@@ -785,11 +785,627 @@ public Hero(String name,float hp)
 
 #### 传参
 
+变量有两种类型 基本类型 和类类型
+
+
+
+ 步骤 **1** : 
+
+##### 基本类型传参
+
+[**顶**](https://how2j.cn/k/class-object/class-object-parameter/293.html#)[**折**](https://how2j.cn/k/class-object/class-object-parameter/293.html#nowhere)
+
+基本类型传参
+在方法内，无法修改方法外的基本类型参数
+
+代码比较复制代码
+
+```java
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+    public Hero(){
+         
+    }
+     
+    //回血
+    public void huixue(int xp){
+        hp = hp + xp;
+        //回血完毕后，血瓶=0
+        xp=0;
+    }
+      
+    public Hero(String name,float hp){
+        this.name = name;
+        this.hp = hp;
+    }
+ 
+    public static void main(String[] args) {
+        Hero teemo =  new Hero("提莫",383);
+        //血瓶，其值是100
+        int xueping = 100;
+         
+        //提莫通过这个血瓶回血
+         
+        teemo.huixue(xueping);
+         
+        System.out.println(xueping);
+         
+    }
+      
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 引用与=
+
+[**顶**](https://how2j.cn/k/class-object/class-object-parameter/293.html#)[**折**](https://how2j.cn/k/class-object/class-object-parameter/293.html#nowhere)
+
+如果一个变量是基本类型
+比如 int hp = 50;
+我们就直接管hp叫变量
+**=表示赋值的意思**。
+如果一个变量是类类型
+比如 Hero h = new Hero();
+我们就管h叫做**引用**。
+**=不再是赋值的意思**
+**=表示指向的意思**
+比如 Hero h = new Hero();
+这句话的意思是
+引用h，指向一个Hero对象
+
+
+
+ 步骤 **3** : 
+
+##### 类类型传参
+
+[**顶**](https://how2j.cn/k/class-object/class-object-parameter/293.html#)[**折**](https://how2j.cn/k/class-object/class-object-parameter/293.html#nowhere)
+
+**类类型又叫引用**
+第24行的引用 **teemo**与 第17行的引用**hero**，**是不同的引用**
+通过调用garen.attack(teemo, 100); 使得这**两个引用都指向了同一个对象**
+所以在第18行hero.hp = hero.hp - damage; 就使得该对象的hp值，发生了变化
+因此第25行，打印该对象的Hp值就是变化后的值
+
+![类类型传参](https://stepimagewm.how2j.cn/595.png)
+
+代码比较复制代码
+
+```java
+public class Hero {
+ 
+    String name; // 姓名
+ 
+    float hp; // 血量
+ 
+    float armor; // 护甲
+ 
+    int moveSpeed; // 移动速度
+ 
+    public Hero(String name, float hp) {
+        this.name = name;
+        this.hp = hp;
+    }
+ 
+    // 攻击一个英雄，并让他掉damage点血
+    public void attack(Hero hero, int damage) {
+        hero.hp = hero.hp - damage;
+    }
+ 
+    public static void main(String[] args) {
+        Hero teemo = new Hero("提莫", 383);
+        Hero garen = new Hero("盖伦", 616);
+        garen.attack(teemo, 100);
+        System.out.println(teemo.hp);
+    }
+ 
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 练习-传参 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-parameter/293.html#)[**折**](https://how2j.cn/k/class-object/class-object-parameter/293.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-parameter/293.html#nowhere)
+
+在方法中，使参数引用指向一个新的对象
+
+外面的引用是指向原来的对象？还是新的对象？
+
+代码比较复制代码
+
+```java
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+    public Hero(){
+         
+    }
+     
+    public Hero(String name,float hp){
+        this.name = name;
+        this.hp = hp;
+    }
+ 
+    //复活
+    public void revive(Hero h){
+        h = new Hero("提莫",383);
+    }
+ 
+    public static void main(String[] args) {
+        Hero teemo =  new Hero("提莫",383);
+         
+        //受到400伤害，挂了
+        teemo.hp = teemo.hp - 400;
+         
+        teemo.revive(teemo);
+         
+        //问题： System.out.println(teemo.hp); 输出多少？ 怎么理解？
+         
+    }
+      
+}
+```
+
+---
+
 #### 包
+
+把比较接近的类，规划在同一个包下
+
+ 步骤 **1** : 
+
+##### 把比较接近的类，规划在同一个包下
+
+[**顶**](https://how2j.cn/k/class-object/class-object-package/299.html#)[**折**](https://how2j.cn/k/class-object/class-object-package/299.html#nowhere)
+
+Hero,ADHero 规划在一个包，叫做charactor（角色）
+Item,Weapon规划在另一个包下，叫做 property(道具)
+在最开始的地方声明该类所处于的包名
+
+![把比较接近的类，规划在同一个包下](https://stepimagewm.how2j.cn/600.png)
+
+代码比较复制代码
+
+```java
+package charactor; //在最开始的地方声明该类所处于的包名
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 使用其他包下的类，必须import
+
+[**顶**](https://how2j.cn/k/class-object/class-object-package/299.html#)[**折**](https://how2j.cn/k/class-object/class-object-package/299.html#nowhere)
+
+使用同一个包下的其他类，直接使用即可
+但是要使用其他包下的类，必须import
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+//Weapon类在其他包里，使用必须进行import
+import property.Weapon;
+ 
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+    //装备一把武器
+    public void equip(Weapon w){
+         
+    }
+        
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 练习-包 
+
+  创建一个新的包charactor1,并且让[练习-治疗类](https://how2j.cn/k/class-object/class-object-overload/291.html#step2206)：Support 声明在这个包下
 
 #### 访问修饰符
 
+成员变量有四种修饰符
+**private** 私有的
+**package**/friendly/default 不写
+**protected** 受保护的
+**public** 公共的
+
+比如public 表示公共的
+
+```tex
+public String name;
+```
+
+而maxHP 没有修饰符即代表package/friendly/default
+
+```tex
+float maxHP
+```
+
+ 示例 **1** : 
+
+##### 类之间的关系
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+类和类之间的关系有如下几种:
+以Hero为例
+**自身：**指的是Hero自己
+**同包子类：**ADHero这个类是Hero的子类，并且和Hero处于**同一个包下**
+**不同包子类：**Support这个类是Hero的子类，但是在**另一个包下**
+**同包类：** GiantDragon 这个类和Hero是**同一个包**，但是彼此**没有继承关系**
+**其他类：**Item这个类，**在不同包**，也没有继承关系的类
+
+![类之间的关系](https://stepimagewm.how2j.cn/605.png)
+
+
+
+ 示例 **2** : 
+
+##### private 私有的
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+使用private修饰属性
+自身：是可以访问的
+同包子类：不能继承
+不同包子类：不能继承
+同包类：不能访问
+其他包类：不能访问
+
+**注：** 红色字体，表示不可行
+
+![private 私有的](https://stepimagewm.how2j.cn/604.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Weapon;
+ 
+public class Hero {
+ 
+    //属性id是private的，只有Hero自己可以访问
+    //子类不能继承
+    //其他类也不能访问
+    private int id;
+     
+    String name;
+ 
+    float hp;
+ 
+    float armor;
+ 
+    int moveSpeed;
+ 
+    public void equip(Weapon w) {
+ 
+    }
+ 
+}
+```
+
+
+
+ 示例 **3** : 
+
+##### package/friendly/default 不写
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+没有修饰符即代表package/friendly/default
+float maxHP; 血量上限
+
+![package/friendly/default 不写](https://stepimagewm.how2j.cn/609.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Weapon;
+ 
+public class Hero {
+    private int id;
+ 
+    String name;
+ 
+    // 无修饰符的属性 hp
+    // 自己可以访问
+ 
+    // 同包子类可以继承
+    // 不同包子类不能继承
+ 
+    // 同包类可以访问
+    // 不同包类不能访问
+    float hp;
+ 
+    float armor;
+ 
+    int moveSpeed;
+ 
+    public void equip(Weapon w) {
+ 
+    }
+ 
+}
+```
+
+
+
+ 示例 **4** : 
+
+##### protected 受保护的
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+受保护的修饰符
+protected float hp; 血量
+
+![protected 受保护的](https://stepimagewm.how2j.cn/610.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Weapon;
+ 
+public class Hero {
+    private int id;
+ 
+    String name;
+ 
+    // protected饰符的属性 hp
+    // 自己可以访问
+ 
+    // 同包子类可以继承
+    // 不同包子类可以继承
+ 
+    // 同包类可以访问
+    // 不同包类不能访问
+    protected float hp;
+ 
+    float armor;
+ 
+    int moveSpeed;
+ 
+    public void equip(Weapon w) {
+ 
+    }
+ 
+}
+```
+
+
+
+ 示例 **5** : 
+
+##### public 公共的
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+公共的修饰符
+public String name; 姓名
+任何地方，都可以访问
+
+![public 公共的](https://stepimagewm.how2j.cn/611.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Weapon;
+ 
+public class Hero {
+    private int id;
+ 
+    // public的属性 name
+    // 自己可以访问
+ 
+    // 同包子类可以继承
+    // 不同包子类可以继承
+ 
+    // 同包类可以访问
+    // 不同包类可以访问
+    public String name;
+ 
+    protected float hp;
+ 
+    float armor;
+ 
+    int moveSpeed;
+ 
+    public void equip(Weapon w) {
+ 
+    }
+ 
+}
+```
+
+
+
+ 示例 **6** : 
+
+##### 总结
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+![总结](https://stepimagewm.how2j.cn/612.png)
+
+ 示例 **7** : 
+
+##### 那么什么情况该用什么修饰符呢？
+
+[**顶**](https://how2j.cn/k/class-object/class-object-modifier/295.html#)[**折**](https://how2j.cn/k/class-object/class-object-modifier/295.html#nowhere)
+
+那么什么情况该用什么修饰符呢？
+从作用域来看，public能够使用所有的情况。 但是大家在工作的时候，又不会真正全部都使用public,那么到底什么情况该用什么修饰符呢？
+
+\1. 属性通常使用private封装起来
+\2. 方法一般使用public用于被调用
+\3. 会被子类继承的方法，通常使用protected
+\4. package用的不多，一般新手会用package,因为还不知道有修饰符这个东西
+
+再就是**作用范围最小原则**
+简单说，能用private就用private，不行就放大一级，用package,再不行就用protected，最后用public。 这样就能把数据尽量的封装起来，没有必要**露出来的**，就不用**露出来**了
+
 #### 类属性
+
+当一个属性被**static**修饰的时候，就叫做**类属性**，又叫做**静态属性**
+当一个属性被声明成类属性，那么**所有的对象，都共享一个值**
+与对象属性对比：
+不同对象的 对象属性 的值都可能不一样。
+比如盖伦的hp 和 提莫的hp 是不一样的。
+但是所有对象的类属性的值，都是一样的
+
+ 步骤 **1** : 
+
+##### 类属性
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#nowhere)
+
+**类属性：** 又叫做静态属性
+**对象属性：** 又叫实例属性，非静态属性
+如果一个属性声明成类属性，那么所有的对象，都共享这么一个值
+给英雄设置一个类属性叫做“版权" (copyright), 无论有多少个具体的英雄，所有的英雄的版权都属于 Riot Games公司。
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name; //实例属性，对象属性，非静态属性
+    protected float hp;
+    static String copyright;//类属性,静态属性
+     
+    public static void main(String[] args) {
+           Hero garen =  new Hero();
+           garen.name = "盖伦";
+            
+           Hero.copyright = "版权由Riot Games公司所有";
+            
+           System.out.println(garen.name);
+           System.out.println(garen.copyright);
+            
+           Hero teemo =  new Hero();
+           teemo.name = "提莫";
+           System.out.println(teemo.name);    
+           System.out.println(teemo.copyright);
+         
+    }
+     
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 访问类属性
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#nowhere)
+
+访问类属性有两种方式
+\1. 对象.类属性
+
+ 
+
+teemo.copyright
+
+ 
+
+
+\2. 类.类属性
+
+ 
+
+Hero.copyright
+
+ 
+
+
+
+这两种方式都可以访问类属性，访问即修改和获取，但是建议使用第二种 **类.类属性** 的方式进行，这样更符合语义上的理解
+
+
+
+ 步骤 **3** : 
+
+##### 什么时候使用对象属性，什么时候使用类属性
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#nowhere)
+
+如果一个属性，每个英雄都不一样，比如name，这样的属性就应该设计为对象属性，因为它是**跟着对象走的**，每个对象的name都是不同的
+
+如果一个属性，**所有的英雄都共享**，都是一样的，那么就应该设计为类属性。比如血量上限，所有的英雄的血量上限都是 9999，不会因为英雄不同，而取不同的值。 这样的属性，就适合设计为类属性
+
+
+
+ 步骤 **4** : 
+
+##### 练习-类属性 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#nowhere)
+
+通过garen.copyright修改其值
+
+ 
+
+garen.copyright = "Blizzard Entertainment Enterprise";
+
+ 
+
+
+然后打印teemo.copyright，观察是否有变化
 
 #### 类方法
 
