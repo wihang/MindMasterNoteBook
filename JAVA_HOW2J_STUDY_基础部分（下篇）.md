@@ -1,4 +1,4 @@
-# JAVA_HOW2J_STUDY_基础部分（下篇）
+#  JAVA_HOW2J_STUDY_基础部分（下篇）
 
 [toc]
 
@@ -1409,8 +1409,652 @@ garen.copyright = "Blizzard Entertainment Enterprise";
 
 #### 类方法
 
+**类方法：** 又叫做静态方法
+
+**对象方法：** 又叫实例方法，非静态方法
+
+访问一个对象方法，必须**建立在有一个对象**的前提的基础上
+访问类方法，**不需要对象**的存在，直接就访问
+
+ 步骤 **1** : 
+
+##### 类方法
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-method/306.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-method/306.html#nowhere)
+
+**类方法：** 又叫做静态方法
+
+**对象方法：** 又叫实例方法，非静态方法
+
+访问一个对象方法，必须**建立在有一个对象**的前提的基础上
+访问类方法，**不需要对象**的存在，直接就访问
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    //实例方法,对象方法，非静态方法
+    //必须有对象才能够调用
+    public void die(){
+        hp = 0;
+    }
+     
+    //类方法，静态方法
+    //通过类就可以直接调用
+    public static void battleWin(){
+        System.out.println("battle win");
+    }
+     
+    public static void main(String[] args) {
+           Hero garen =  new Hero();
+           garen.name = "盖伦";
+           //必须有一个对象才能调用
+           garen.die();
+            
+           Hero teemo =  new Hero();
+           teemo.name = "提莫";
+            
+           //无需对象，直接通过类调用
+           Hero.battleWin();
+         
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 调用类方法
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-method/306.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-method/306.html#nowhere)
+
+和[访问类属性](https://how2j.cn/k/class-object/class-object-class-attribute/296.html#step2259)一样，调用类方法也有两种方式
+\1. 对象.类方法
+
+ 
+
+garen.battleWin();
+
+ 
+
+
+\2. 类.类方法
+
+ 
+
+Hero.battleWin();
+
+ 
+
+
+
+这两种方式都可以调用类方法，但是建议使用第二种 类.类方法 的方式进行，这样更符合语义上的理解。
+并且在很多时候，并没有实例，比如在前面练习的时候用到的[随机数的获取办法](https://how2j.cn/k/array/array-create/280.html#step2182)
+
+ 
+
+Math.random()
+
+ 
+
+
+random()就是一个类方法，直接通过类Math进行调用，并没有一个Math的实例存在。
+
+
+
+ 步骤 **3** : 
+
+##### 什么时候设计对象方法，什么时候设计类方法
+
+[**顶**](https://how2j.cn/k/class-object/class-object-class-method/306.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-method/306.html#nowhere)
+
+如果在某一个方法里，调用了对象属性，比如
+
+ 
+
+​    public String getName(){
+
+​    	return name;
+
+​    }
+
+ 
+
+
+name属性是对象属性，只有存在一个具体对象的时候，name才有意义。 如果方法里访问了对象属性，那么这个方法，就必须设计为对象方法
+
+如果一个方法，没有调用任何对象属性，那么就可以考虑设计为类方法，比如
+
+ 
+
+​    public static void printGameDuration(){
+
+​    	System.out.println("已经玩了10分50秒");
+
+​    }
+
+ 
+
+
+printGameDuration 打印当前玩了多长时间了，不和某一个具体的英雄关联起来，所有的英雄都是一样的。 这样的方法，更带有**功能性**色彩
+就像取随机数一样，random()是一个功能用途的方法
+
+ 
+
+Math.random()
+
+ 
+
+
+
+ 步骤 **4** : 
+
+##### 练习-类方法 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-class-method/306.html#)[**折**](https://how2j.cn/k/class-object/class-object-class-method/306.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-class-method/306.html#nowhere)
+
+在一个类方法中，直接调用一个对象方法，
+比如在battleWin中调用die()
+能否直接调用？ 为什么？
+
+---
+
 #### 属性初始化
+
+步骤 **1** : 
+
+##### 对象属性初始化
+
+[**顶**](https://how2j.cn/k/class-object/class-object-init/297.html#)[**折**](https://how2j.cn/k/class-object/class-object-init/297.html#nowhere)
+
+对象属性初始化有3种
+\1. 声明该属性的时候初始化
+\2. 构造方法中初始化
+\3. 初始化块
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name = "some hero"; //声明该属性的时候初始化
+    protected float hp;
+    float maxHP;
+     
+    {
+        maxHP = 200; //初始化块
+    }  
+     
+    public Hero(){
+        hp = 100; //构造方法中初始化
+         
+    }
+     
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 类属性初始化
+
+[**顶**](https://how2j.cn/k/class-object/class-object-init/297.html#)[**折**](https://how2j.cn/k/class-object/class-object-init/297.html#nowhere)
+
+类属性初始化有2种
+\1. 声明该属性的时候初始化
+\2. 静态初始化块
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+    float maxHP;
+     
+    //物品栏的容量
+    public static int itemCapacity=8; //声明的时候 初始化
+     
+    static{
+        itemCapacity = 6;//静态初始化块 初始化
+    }
+     
+    public Hero(){
+         
+    }
+     
+    public static void main(String[] args) {
+        System.out.println(Hero.itemCapacity);
+    }
+     
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 练习-属性初始化 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-init/297.html#)[**折**](https://how2j.cn/k/class-object/class-object-init/297.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-init/297.html#nowhere)
+
+对象属性的初始化有三种方式
+故意把初始化块，放在构造方法下面，问题：
+
+这三种方式，谁先执行？谁后执行？
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name = "some hero"; 
+     
+    public Hero(){
+        name = "one hero";
+    }
+    {
+        name = "the hero";
+    }
+     
+}
+```
+
+---
 
 #### 单例模式
 
+[步骤 **1** : 单例模式  ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step5904)
+[步骤 **2** : 饿汉式单例模式  ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step753)
+[步骤 **3** : 懒汉式单例模式  ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step2216)
+[步骤 **4** : 什么时候使用饿汉式，什么时候使用懒汉式  ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step2257)
+[步骤 **5** : 单例模式三元素  ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step2263)
+[步骤 **6** : 练习-单例模式     ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step2217)
+[步骤 **7** : 答案-单例模式   ](https://how2j.cn/k/class-object/class-object-singleton/349.html#step2264)
+
+
+
+ 步骤 **1** : 
+
+##### 单例模式
+
+[**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+单例模式又叫做 Singleton模式，指的是一个类，在一个JVM里，只有一个实例存在。
+
+
+
+ 步骤 **2** : 
+
+##### 饿汉式单例模式
+
+[**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+GiantDragon 应该只有一只，通过私有化其构造方法，使得外部无法通过new 得到新的实例。
+GiantDragon 提供了一个public static的getInstance方法，外部调用者通过该方法获取12行定义的对象，而且每一次都是获取同一个对象。 从而达到单例的目的。
+这种单例模式又叫做**饿汉式**单例模式，无论如何都会创建一个实例
+
+- [GiantDragon.java](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+  - ```java
+    package charactor;
+     
+    public class GiantDragon {
+     
+        //私有化构造方法使得该类无法在外部通过new 进行实例化
+        private GiantDragon(){
+             
+        }
+     
+        //准备一个类属性，指向一个实例化对象。 因为是类属性，所以只有一个
+     
+        private static GiantDragon instance = new GiantDragon();
+         
+        //public static 方法，提供给调用者获取12行定义的对象
+        public static GiantDragon getInstance(){
+            return instance;
+        }
+         
+    }
+    ```
+
+- [TestGiantDragon.java](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+  - ```java
+    package charactor;
+     
+    public class TestGiantDragon {
+     
+        public static void main(String[] args) {
+            //通过new实例化会报错
+    //      GiantDragon g = new GiantDragon();
+             
+            //只能通过getInstance得到对象
+             
+            GiantDragon g1 = GiantDragon.getInstance();
+            GiantDragon g2 = GiantDragon.getInstance();
+            GiantDragon g3 = GiantDragon.getInstance();
+             
+            //都是同一个对象
+            System.out.println(g1==g2);
+            System.out.println(g1==g3);
+        }
+    }
+    ```
+
+ 步骤 **3** : 
+
+##### 懒汉式单例模式
+
+[**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+**懒汉式**单例模式与**饿汉式**单例模式不同，只有在调用getInstance的时候，才会创建实例
+
+- [GiantDragon.java](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+  - ```java
+    package charactor;
+     
+    public class GiantDragon {
+      
+        //私有化构造方法使得该类无法在外部通过new 进行实例化
+        private GiantDragon(){       
+        }
+      
+        //准备一个类属性，用于指向一个实例化对象，但是暂时指向null
+        private static GiantDragon instance;
+          
+        //public static 方法，返回实例对象
+        public static GiantDragon getInstance(){
+            //第一次访问的时候，发现instance没有指向任何对象，这时实例化一个对象
+            if(null==instance){
+                instance = new GiantDragon();
+            }
+            //返回 instance指向的对象
+            return instance;
+        }
+          
+    }
+    ```
+
+- [TestGiantDragon.java](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+  - ```java
+    package charactor;
+     
+    public class TestGiantDragon {
+     
+        public static void main(String[] args) {
+            //通过new实例化会报错
+    //      GiantDragon g = new GiantDragon();
+             
+            //只能通过getInstance得到对象
+             
+            GiantDragon g1 = GiantDragon.getInstance();
+            GiantDragon g2 = GiantDragon.getInstance();
+            GiantDragon g3 = GiantDragon.getInstance();
+             
+            //都是同一个对象
+            System.out.println(g1==g2);
+            System.out.println(g1==g3);
+        }
+    }
+
+ 步骤 **4** : 
+
+##### 什么时候使用饿汉式，什么时候使用懒汉式
+
+[**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+**饿汉式**是立即加载的方式，无论是否会用到这个对象，都会加载。
+如果在构造方法里写了性能消耗较大，占时较久的代码，比如建立与数据库的连接，那么就会在启动的时候感觉稍微有些卡顿。
+
+**懒汉式**，是延迟加载的方式，只有使用的时候才会加载。 并且有[线程安全](https://how2j.cn/k/thread/thread-synchronized/355.html#step793)的考量(鉴于同学们学习的进度，暂时不对线程的章节做展开)。
+使用懒汉式，在启动的时候，会感觉到比饿汉式略快，因为并没有做对象的实例化。 但是在第一次调用的时候，会进行实例化操作，感觉上就略慢。
+
+看业务需求，如果业务上允许有比较充分的启动和初始化时间，就使用饿汉式，否则就使用懒汉式
+
+
+
+ 步骤 **5** : 
+
+##### 单例模式三元素
+
+[**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+这个是面试的时候经常会考的点，面试题通常的问法是:
+
+ 
+
+什么是单例模式？
+
+ 
+
+
+回答的时候，要答到三元素
+\1. 构造方法私有化
+\2. 静态属性指向实例
+\3. public static的 getInstance方法，返回第二步的静态属性
+
+
+
+ 步骤 **6** : 
+
+##### 练习-单例模式 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-singleton/349.html#)[**折**](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-singleton/349.html#nowhere)
+
+使用饿汉式单例模式, 把Hero类改造成为单例模式
+
+使用懒汉式单例模式，把Item类改造成为单例模式
+
+---
+
 #### 枚举类型
+
+ 步骤 **1** : 
+
+##### 预先定义的常量
+
+[**顶**](https://how2j.cn/k/class-object/class-object-enum/678.html#)[**折**](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+枚举enum是一种特殊的类(还是类)，使用枚举可以很方便的定义常量
+比如设计一个枚举类型 季节，里面有4种常量
+
+
+
+ 
+
+public enum Season {
+
+​	SPRING,SUMMER,AUTUMN,WINTER
+
+}
+
+ 
+
+
+
+一个常用的场合就是[switch](https://how2j.cn/k/control-flow/control-flow-switch/272.html)语句中，使用枚举来进行判断
+
+**注：**因为是常量，所以一般都是全大写
+
+- [HelloWorld.java](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+  - ```java
+    public class HelloWorld {
+        public static void main(String[] args) {
+            Season season = Season.SPRING;
+            switch (season) {
+            case SPRING:
+                System.out.println("春天");
+                break;
+            case SUMMER:
+                System.out.println("夏天");
+                break;
+            case AUTUMN:
+                System.out.println("秋天");
+                break;
+            case WINTER:
+                System.out.println("冬天");
+                break;
+            }
+        }
+    }
+    ```
+
+- [Season.java](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+  - ```java
+    public enum Season {
+        SPRING,SUMMER,AUTUMN,WINTER
+    }
+    ```
+
+ 步骤 **2** : 
+
+##### 使用枚举的好处
+
+[**顶**](https://how2j.cn/k/class-object/class-object-enum/678.html#)[**折**](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+假设在使用[switch](https://how2j.cn/k/control-flow/control-flow-switch/272.html)的时候，不是使用枚举，而是使用int，而int的取值范围就不只是1-4，有可能取一个超出1-4之间的值，这样判断结果就似是而非了。（因为只有4个季节）
+
+但是使用枚举，就能把范围死死的限定在这四个当中
+
+ 
+
+SPRING,SUMMER,AUTUMN,WINTER
+
+ 
+
+
+而不会出现奇怪的 **第5季**
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        int season = 5;
+        switch (season) {
+        case 1:
+            System.out.println("春天");
+            break;
+        case 2:
+            System.out.println("夏天");
+            break;
+        case 3:
+            System.out.println("秋天");
+            break;
+        case 4:
+            System.out.println("冬天");
+            break;
+        }
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 遍历枚举
+
+[**顶**](https://how2j.cn/k/class-object/class-object-enum/678.html#)[**折**](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+借助[增强型for循环](https://how2j.cn/k/array/array-foreach/330.html#step707)，可以很方便的遍历一个枚举都有哪些常量
+
+代码比较复制代码
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        for (Season s : Season.values()) {
+            System.out.println(s);
+        }
+    }
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 练习-枚举 
+
+  [**顶**](https://how2j.cn/k/class-object/class-object-enum/678.html#)[**折**](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/class-object/class-object-enum/678.html#nowhere)
+
+英雄联盟中有这么一些分类
+TANK (坦克)
+WIZARD (法师 )
+ASSASSIN (刺客)
+ASSIST (辅助)
+WARRIOR (近战)
+RANGED (远程 )
+PUSH (推进)
+FARMING (打野)
+设计一个枚举类型HeroType,使用上述分类作为常量
+
+再编写一段switch语句，把每种枚举常量输出为中文字符串
+
+```java
+/*英雄联盟中有这么一些分类
+        TANK (坦克)
+        WIZARD (法师 )
+        ASSASSIN (刺客)
+        ASSIST (辅助)
+        WARRIOR (近战)
+        RANGED (远程 )
+        PUSH (推进)
+        FARMING (打野)
+        设计一个枚举类型HeroType,使用上述分类作为常量
+ 
+        再编写一段switch语句，把每种枚举常量输出为中文字符串*/
+public enum HeroType {
+    TANK, WIZARD,ASSASSIN,ASSIST,WARRIOR,RANGED,PUSH,FARMING
+}
+class Ok{
+    public static void main(String[] args){
+        for(HeroType jhn: HeroType.values()){
+        switch(jhn) {
+            case TANK:
+                System.out.println("坦克");
+                break;
+            case WIZARD:
+                System.out.println("法师");
+                break;
+            case ASSASSIN:
+                System.out.println("刺客");
+                break;
+            case ASSIST:
+                System.out.println("辅助");
+                break;
+            case WARRIOR:
+                System.out.println("近战");
+                break;
+            case RANGED:
+                System.out.println("远程");
+                break;
+            case PUSH:
+                System.out.println("推进");
+                break;
+            case FARMING:
+                System.out.println("打野");
+                break;
+        }
+        }
+    }
+}
+```
+
