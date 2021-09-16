@@ -2058,3 +2058,1386 @@ class Ok{
 }
 ```
 
+---
+
+### 接口与继承
+
+#### 接口
+
+在设计LOL的时候，进攻类英雄有两种，一种是进行物理系攻击，一种是进行魔法系攻击
+
+这时候，就可以使用**接口**来实现这个效果。
+
+**接口就像是一种约定**，我们约定某些英雄是物理系英雄，那么他们就一定能够进行物理攻击。
+
+ 步骤 **1** : 
+
+##### 物理攻击接口
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+创建一个接口 File->New->Interface
+AD ，声明一个方法 physicAttack 物理攻击，但是没有方法体，是一个“**空**”方法
+
+![物理攻击接口](https://stepimagewm.how2j.cn/586.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public interface AD {
+        //物理伤害
+    public void physicAttack();
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 设计一类英雄，能够使用物理攻击
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+设计一类英雄，能够使用物理攻击，这类英雄在LOL中被叫做AD
+类：ADHero
+继承了Hero 类，所以继承了name,hp,armor等属性
+
+**实现某个接口，就相当于承诺了某种约定**
+
+所以，**实现**了**AD**这个接口，就**必须**提供AD接口中声明的方法**physicAttack()**
+**实现**在语法上使用关键字 **implements**
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class ADHero extends Hero implements AD{
+ 
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+ 
+}	
+```
+
+
+
+ 步骤 **3** : 
+
+##### 魔法攻击接口
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+创建一个接口 File->New->Interface
+AP ，声明一个方法 magicAttack 魔法攻击，但是没有方法体，是一个“空”方法
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public interface AP {
+ 
+    public void magicAttack();
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 设计一类英雄，只能使用魔法攻击
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+设计一类英雄，只能使用魔法攻击，这类英雄在LOL中被叫做AP
+类：APHero
+继承了Hero 类，所以继承了name,hp,armor等属性
+同时，实现了**AP**这个接口，就**必须**提供AP接口中声明的方法magicAttack()
+**实现**在语法上使用关键字 **implements**
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class APHero extends Hero implements AP{
+ 
+    @Override
+    public void magicAttack() {
+        System.out.println("进行魔法攻击");
+    }
+ 
+}
+```
+
+
+
+ 步骤 **5** : 
+
+##### 设计一类英雄，既能进行物理攻击，又能进行魔法攻击
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+一种英雄，能够同时进行物理攻击和魔法攻击
+比如伊泽瑞尔，皮城女警凯特琳
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+//同时能进行物理和魔法伤害的英雄
+public class ADAPHero extends Hero implements AD,AP{
+  
+    @Override
+    public void magicAttack() {
+        System.out.println("进行魔法攻击");
+    }
+  
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+  
+}
+```
+
+
+
+ 步骤 **6** : 
+
+##### 什么样的情况下该使用接口?
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+如上的例子，似乎要接口，不要接口，都一样的，那么接口的意义是什么呢
+
+学习一个知识点，是由浅入深得进行的。 这里呢，只是引入了接口的概念，要真正理解接口的好处，需要更多的实践，以及在较为复杂的系统中进行大量运用之后，才能够真正理解，比如在学习了[多态](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html)之后就能进一步加深理解。
+
+刚刚接触一个概念，就希望达到炉火纯青的学习效果，这样的学习目标是不科学的。
+
+
+
+ 步骤 **7** : 
+
+##### 练习-接口 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-interface/289.html#nowhere)
+
+设计一个治疗者接口：Healer
+
+该接口声明有方法： heal()
+
+设计一个Support类，代表辅助英雄，继承Hero类，同时实现了Healer这个接口
+
+#### 对象转型
+
+示例 **1** : 
+
+##### 明确引用类型与对象类型的概念
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+首先，明确引用类型与对象类型的概念
+在这个例子里，有一个对象 new ADHero(), 同时也有一个引用ad
+对象是有类型的， 是ADHero
+引用也是有类型的，是ADHero
+通常情况下，引用类型和对象类型是一样的
+接下来要讨论的类型转换的问题，指的是**引用类型和对象类型**不一致的情况下的转换问题
+
+![明确引用类型与对象类型的概念](https://stepimagewm.how2j.cn/636.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+     
+    public static void main(String[] args) {
+         
+        ADHero ad = new ADHero();
+         
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+##### 子类转父类(向上转型) 
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+所谓的转型，是指当**引用类型**和**对象类型**不一致的时候，才需要进行类型转换
+类型转换有时候会成功，有时候会失败(参考[基本类型的类型转换](https://how2j.cn/k/variable/variable-transfer/264.html))
+
+到底能否转换成功？ 教大家一个很简单的判别办法
+**把右边的当做左边来用**，看说得通不
+
+
+
+ 
+
+Hero h = new Hero();
+
+ADHero ad = new ADHero();
+
+h = ad;
+
+ 
+
+
+
+右边ad**引用所指向的对象的类型**是 物理攻击英雄
+左边h**引用的类型**是 普通英雄
+把物理攻击英雄 当做 普通英雄，说不说得通？ 说得通，就可以转
+
+所有的**子类转换为父类**，都是说得通的。比如你身边的例子
+
+苹果手机 继承了 手机，把苹果手机当做普通手机使用
+怡宝纯净水 继承了 饮品， 把怡宝纯净水 当做饮品来使用
+苍老师 继承了动物， 把苍老师 。。。
+
+![子类转父类(向上转型)](https://stepimagewm.how2j.cn/624.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+     
+    public static void main(String[] args) {
+         
+        Hero h = new Hero();
+         
+        ADHero ad = new ADHero();
+         
+        //类型转换指的是把一个引用所指向的对象的类型，转换为另一个引用的类型
+         
+        //把ad引用所指向的对象的类型是ADHero
+        //h引用的类型是Hero
+        //把ADHero当做Hero使用，一定可以
+         
+        h = ad;
+         
+    }
+}
+```
+
+
+
+
+
+ 示例 **3** : 
+
+##### 父类转子类(向下转型)
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+父类转子类，有的时候行，有的时候不行，所以必须进行强制转换。
+强制转换的意思就是 转换有风险，风险自担。
+
+**什么时候行呢？**
+
+ 
+
+\1.        Hero h =new Hero();
+
+\2.        ADHero ad = new ADHero();
+
+\3.        h = ad;
+
+\4.        ad = (ADHero) h;
+
+ 
+
+
+第3行，是子类转父类，一定可以的
+第4行，就是父类转子类，所以要进行强转。
+h这个引用，所指向的对象是ADHero, 所以第4行，就会把ADHero转换为ADHero，就能转换成功。
+
+**什么时候转换不行呢？**
+
+ 
+
+\1.        Hero h =new Hero();
+
+\2.        ADHero ad = new ADHero();
+
+\3.        Support s =new Support();
+
+\4.        h = s;
+
+\5.        ad = (ADHero)h;
+
+ 
+
+
+第4行，是子类转父类，是可以转换成功的
+第5行，是把h引用所指向的对象 Support，转换为ad引用的类型ADHero。 从语义上讲，把物理攻击英雄，当成辅助英雄来用，说不通，所以会强制转换失败，并且抛出[异常](https://how2j.cn/k/exception/exception-tutorial/332.html)
+
+**以下是对完整的代码的关键行分析**
+14行： 把ad当做Hero使用，一定可以
+转换之后，h引用指向一个ad对象
+15行： h引用有可能指向一个ad对象，也有可能指向一个support对象
+所以把h引用转换成AD类型的时候，就有可能成功，有可能失败
+因此要进行强制转换，换句话说转换后果自负
+到底能不能转换成功，要看引用**h到底指向的是哪种对象**
+在这个例子里，h指向的是一个ad对象，所以转换成ADHero类型，是可以的
+16行：把一个support对象当做Hero使用，一定可以
+转换之后，h引用指向一个support对象
+17行：这个时候，h指向的是一个support对象，所以转换成ADHero类型，会失败。
+失败的表现形式是抛出异常 ClassCastException 类型转换异常
+
+![父类转子类(向下转型)](https://stepimagewm.how2j.cn/625.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+import charactor1.Support;
+  
+public class Hero {
+    public String name;
+    protected float hp;
+      
+    public static void main(String[] args) {
+        Hero h =new Hero();
+        ADHero ad = new ADHero();
+        Support s =new Support();
+          
+        h = ad;
+        ad = (ADHero) h;
+        h = s;
+        ad = (ADHero)h;
+    }
+      
+}
+```
+
+
+
+ 示例 **4** : 
+
+##### 没有继承关系的两个类，互相转换
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+没有继承关系的两个类，互相转换，一定会失败
+虽然ADHero和APHero都继承了Hero，但是彼此没有互相继承关系
+"**把魔法英雄当做物理英雄来用**",在语义上也是说不通的
+
+![没有继承关系的两个类，互相转换](https://stepimagewm.how2j.cn/626.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    public static void main(String[] args) {
+        ADHero ad = new ADHero();
+ 
+        APHero ap = new APHero();
+ 
+        // 没有继承关系的类型进行互相转换一定会失败，所以会出现编译错误
+        ad = (ADHero) ap;
+ 
+    }
+ 
+}
+```
+
+
+
+ 示例 **5** : 
+
+##### 实现类转换成接口(向上转型)
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+引用ad指向的对象是ADHero类型，这个类型实现了AD接口
+10行： 把一个ADHero类型转换为AD接口
+从语义上来讲，把一个ADHero当做AD来使用，而AD接口只有一个physicAttack方法，这就意味着转换后就有可能要调用physicAttack方法，而ADHero一定是有physicAttack方法的，所以转换是能成功的。
+
+![实现类转换成接口(向上转型)](https://stepimagewm.how2j.cn/627.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+   
+public class Hero {
+    public String name;
+    protected float hp;
+       
+    public static void main(String[] args) {
+        ADHero ad = new ADHero();
+          
+        AD adi = ad;
+          
+    }
+       
+}
+```
+
+
+
+ 示例 **6** : 
+
+##### 接口转换成实现类(向下转型)
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+10行： ad引用指向ADHero， 而adi引用是接口类型：AD，实现类转换为接口，是向上转型，所以无需强制转换，并且一定能成功
+12行: adi实际上是指向一个ADHero的，所以能够转换成功
+14行： adi引用所指向的对象是一个ADHero，要转换为ADAPHero就会失败。
+
+**假设能够转换成功**，那么就可以使用**magicAttack**方法，而adi引用所指向的对象**ADHero****是****没有magicAttack**方法的。
+
+![接口转换成实现类(向下转型)](https://stepimagewm.how2j.cn/628.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+     
+public class Hero {
+    public String name;
+    protected float hp;
+         
+    public static void main(String[] args) {
+        ADHero ad = new ADHero();
+            
+        AD adi = ad;
+   
+        ADHero adHero = (ADHero) adi;
+            
+        ADAPHero adapHero = (ADAPHero) adi;
+        adapHero.magicAttack();
+    }
+         
+}
+```
+
+
+
+ 示例 **7** : 
+
+##### instanceof
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+instanceof Hero 判断一个引用所指向的对象，是否是Hero类型，或者Hero的子类
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class Hero {
+    public String name;
+    protected float hp;
+      
+    public static void main(String[] args) {
+        ADHero ad = new ADHero();
+        APHero ap = new APHero();
+         
+        Hero h1= ad;
+        Hero h2= ap;
+         
+        //判断引用h1指向的对象，是否是ADHero类型
+        System.out.println(h1 instanceof ADHero);
+         
+        //判断引用h2指向的对象，是否是APHero类型
+        System.out.println(h2 instanceof APHero);
+         
+        //判断引用h1指向的对象，是否是Hero的子类型
+        System.out.println(h1 instanceof Hero);
+    }
+}
+```
+
+
+
+ 示例 **8** : 
+
+##### 练习-类型转换 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-casting/308.html#nowhere)
+
+如下转换能否成功？
+如果不能，是哪一行会出错？
+为什么会出错
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    public static void main(String[] args) {
+        ADHero ad = new ADHero();
+        Hero h = ad;
+        AD adi = (AD) h;
+        APHero ap = (APHero) adi;
+    }
+}
+```
+
+#### 重写
+
+子类可以继承父类的对象方法
+
+在继承后，重复提供该方法，就叫做方法的重写
+
+又叫覆盖 override
+
+步骤 **1** : 
+
+##### 父类Item
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+父类Item有一个方法，叫做effect
+
+代码比较复制代码
+
+```java
+package property;
+ 
+public class Item {
+    String name;
+    int price;
+ 
+    public void buy(){
+        System.out.println("购买");
+    }
+    public void effect() {
+        System.out.println("物品使用后，可以有效果");
+    }
+ 
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 子类LifePotion
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+子类LifePotion继承Item,同时也提供了方法effect
+
+代码比较复制代码
+
+```java
+package property;
+ 
+public class LifePotion extends Item{
+     
+    public void effect(){
+        System.out.println("血瓶使用后，可以回血");
+    }
+     
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 调用重写的方法
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+调用重写的方法
+调用就会执行重写的方法，而不是从父类的方法
+所以LifePotion的effect会打印：
+"血瓶使用后，可以回血"
+
+代码比较复制代码
+
+```java
+package property;
+ 
+public class Item {
+    String name;
+    int price;
+     
+    public void effect(){
+        System.out.println("物品使用后，可以有效果");
+    }
+     
+    public static void main(String[] args) {
+        Item i = new Item();
+        i.effect();
+         
+        LifePotion lp =new LifePotion();
+        lp.effect();
+    }
+     
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 如果没有重写这样的机制怎么样？
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+如果没有重写这样的机制，也就是说LifePotion这个类，一旦继承了Item，所有方法都不能修改了。
+
+但是LifePotion又希望提供一点不同的功能，为了达到这个目的，只能**放弃继承Item**,重新编写所有的属性和方法，然后在编写effect的时候，做一点小改动.
+
+这样就增加了开发时间和维护成本
+
+- [Item.java](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+- [LifePotion.java](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+代码比较复制代码
+
+```java
+package property;
+ 
+public class Item {
+    String name;
+    int price;
+ 
+    public void buy(){
+        System.out.println("购买");
+    }
+    public void effect() {
+        System.out.println("物品使用后，可以有效果");
+    }
+ 
+}
+```
+
+
+
+ 步骤 **5** : 
+
+##### 练习-重写 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html#nowhere)
+
+设计一个类MagicPotion 蓝瓶，继承Item, 重写effect方法
+并输出 “蓝瓶使用后，可以回魔法”
+
+#### 多态
+
+操作符的多态
+\+ 可以作为算数运算，也可以作为字符串连接
+
+类的多态
+父类引用指向子类对象
+
+
+
+ 示例 **1** : 
+
+##### 操作符的多态
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+同一个操作符在不同情境下，具备不同的作用
+如果+号两侧都是整型，那么**+代表 数字相加**
+如果+号两侧，任意一个是字符串，那么**+代表字符串连接**
+
+```java
+package charactor;
+   
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    public static void main(String[] args) {
+         
+        int i = 5;
+        int j = 6;
+        int k = i+j; //如果+号两侧都是整型，那么+代表 数字相加
+         
+        System.out.println(k);
+         
+        int a = 5;
+        String b = "5";
+         
+        String c = a+b; //如果+号两侧，任意一个是字符串，那么+代表字符串连接
+        System.out.println(c);
+         
+    }
+       
+}
+```
+
+ 示例 **2** : 
+
+##### 观察类的多态现象
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+观察类的多态现象：
+\1. i1和i2都是Item类型
+\2. 都调用effect方法
+\3. 输出不同的结果
+
+多态: 都是同一个类型，调用同一个方法，却能呈现不同的状态
+
+![观察类的多态现象](https://stepimagewm.how2j.cn/2272.png)
+
+- [Item.java](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+  - ```java
+    package property;
+     
+    public class Item {
+        String name;
+        int price;
+     
+        public void buy(){
+            System.out.println("购买");
+        }
+        public void effect() {
+            System.out.println("物品使用后，可以有效果 ");
+        }
+         
+        public static void main(String[] args) {
+            Item i1= new LifePotion();
+            Item i2 = new MagicPotion();
+            System.out.print("i1  是Item类型，执行effect打印:");
+            i1.effect();
+            System.out.print("i2也是Item类型，执行effect打印:");
+            i2.effect();
+        }
+     
+    }
+    ```
+
+- [LifePotion.java](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+  - ```java
+    package property;
+     
+    public class LifePotion extends Item {
+        public void effect(){
+            System.out.println("血瓶使用后，可以回血");
+        }
+    }
+    ```
+
+- [MagicPotion.java](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+  - ```java
+    package property;
+     
+    public class MagicPotion extends Item{
+     
+        public void effect(){
+            System.out.println("蓝瓶使用后，可以回魔法");
+        }
+    }
+    ```
+
+ 示例 **3** : 
+
+##### 类的多态条件
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+要实现类的多态，需要如下条件
+\1. 父类（接口）引用指向子类对象
+\2. 调用的方法有[重写](https://how2j.cn/k/interface-inheritance/interface-inheritance-override/309.html)
+那么多态有什么作用呢？ 通过比较[不使用多态](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#step643)与[使用多态](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#step645)来进一步了解
+
+
+
+ 示例 **4** : 
+
+##### 类的多态-不使用多态
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+**如果不使用多态**，
+假设英雄要使用血瓶和魔瓶，就需要为Hero设计两个方法
+useLifePotion
+useMagicPotion
+
+
+除了血瓶和魔瓶还有很多种物品，那么就需要设计很多很多个方法，比如
+usePurityPotion 净化药水
+useGuard 守卫
+useInvisiblePotion 使用隐形药水
+等等等等
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.LifePotion;
+import property.MagicPotion;
+   
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    public void useLifePotion(LifePotion lp){
+        lp.effect();
+    }
+    public void useMagicPotion(MagicPotion mp){
+        mp.effect();
+    }
+ 
+    public static void main(String[] args) {
+         
+        Hero garen =  new Hero();
+        garen.name = "盖伦";
+     
+        LifePotion lp =new LifePotion();
+        MagicPotion mp =new MagicPotion();
+         
+        garen.useLifePotion(lp);
+        garen.useMagicPotion(mp);
+         
+    }
+       
+}
+```
+
+
+
+
+
+ 示例 **5** : 
+
+##### 类的多态-使用多态
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+如果物品的种类特别多，那么就需要设计很多的方法
+比如useArmor,useWeapon等等
+
+这个时候采用多态来解决这个问题
+设计一个方法叫做useItem，其参数类型是Item
+如果是使用血瓶，调用该方法
+如果是使用魔瓶，还是调用该方法
+无论英雄要使用什么样的物品，**只需要一个方法**即可
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Item;
+import property.LifePotion;
+import property.MagicPotion;
+   
+public class Hero {
+    public String name;
+    protected float hp;
+ 
+    public void useItem(Item i){
+        i.effect();
+    }
+ 
+    public static void main(String[] args) {
+         
+        Hero garen =  new Hero();
+        garen.name = "盖伦";
+     
+        LifePotion lp =new LifePotion();
+        MagicPotion mp =new MagicPotion();
+         
+        garen.useItem(lp);
+        garen.useItem(mp);     
+         
+    }
+       
+}
+```
+
+
+
+ 示例 **6** : 
+
+##### 练习-多态 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-polymorphic/315.html#nowhere)
+
+ 
+
+immortal是不朽的，不死的意思
+
+mortal就是终有一死的，凡人的意思
+
+ 
+
+
+\1. 设计一个接口
+接口叫做Mortal,其中有一个方法叫做die
+\2. 实现接口
+分别让ADHero,APHero,ADAPHero这三个类，实现Mortal接口，不同的类实现die方法的时候，都打印出不一样的字符串
+\3. 为Hero类，添加一个方法,在这个方法中调用 m的die方法。
+
+ 
+
+public void kill(Mortal m)
+
+ 
+
+
+\4. 在主方法中
+首先实例化出一个Hero对象:盖伦
+然后实例化出3个对象，分别是ADHero,APHero,ADAPHero的实例
+然后让盖伦 kill 这3个对象
+
+#### 隐藏
+
+与重写类似，方法的**重写是**子类覆盖父类的**对象方法**
+
+**隐藏**，就是子类覆盖父类的**类方法**
+
+ 步骤 **1** : 
+
+##### 父类
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#nowhere)
+
+父类有一个类方法 ：battleWin
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class Hero {
+    public String name;
+    protected float hp;
+  
+    //类方法，静态方法
+    //通过类就可以直接调用
+    public static void battleWin(){
+        System.out.println("hero battle win");
+    }
+      
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 子类隐藏父类的类方法
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#nowhere)
+
+子类隐藏父类的类方法
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class ADHero extends Hero implements AD{
+  
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+     
+    //隐藏父类的battleWin方法
+    public static void battleWin(){
+        System.out.println("ad hero battle win");
+    }   
+     
+    public static void main(String[] args) {
+        Hero.battleWin();
+        ADHero.battleWin();
+    }
+  
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 练习-隐藏 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-hide/310.html#nowhere)
+
+ 
+
+Hero h =new ADHero();
+
+ 
+
+
+h.battleWin(); //battleWin是一个类方法
+h是父类类型的引用
+但是指向一个子类对象
+h.battleWin(); 会调用父类的方法？还是子类的方法？
+
+#### super
+
+ 步骤 **1** : 
+
+##### 准备一个显式提供无参构造方法的父类
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+准备显式提供无参构造方法的父类
+在实例化Hero对象的时候，其构造方法会打印
+“Hero的构造方法 "
+
+```java
+package charactor;
+ 
+import property.Item;
+ 
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+    public void useItem(Item i){
+        System.out.println("hero use item");
+        i.effect();
+    }
+     
+    public Hero(){
+        System.out.println("Hero的构造方法 ");
+    }
+     
+    public static void main(String[] args) {
+        new Hero();
+    }
+      
+}
+```
+
+
+
+ 步骤 **2** : 
+
+##### 实例化子类，父类的构造方法一定会被调用
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+实例化一个ADHero(), 其构造方法会被调用
+其**父类的构造方法也会被调用**
+并且是父类构造方法**先调用**
+子类构造方法会默认调用父类的 无参的构造方法
+
+![实例化子类，父类的构造方法一定会被调用](https://stepimagewm.how2j.cn/662.png)
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class ADHero extends Hero implements AD{
+  
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+     
+    public ADHero(){
+         
+        System.out.println("AD Hero的构造方法");
+    }
+     
+    public static void main(String[] args) {
+ 
+        new ADHero();
+         
+    }
+  
+}
+```
+
+
+
+ 步骤 **3** : 
+
+##### 父类显式提供两个构造方法
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+分别是无参的构造方法和带一个参数的构造方法
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Item;
+ 
+public class Hero {
+        
+    String name; //姓名
+        
+    float hp; //血量
+        
+    float armor; //护甲
+        
+    int moveSpeed; //移动速度
+     
+    public void useItem(Item i){
+        System.out.println("hero use item");
+        i.effect();
+    }   
+     
+    public Hero(){
+        System.out.println("Hero的无参的构造方法 ");
+    }
+     
+    public Hero(String name){
+        System.out.println("Hero的有一个参数的构造方法 ");
+        this.name = name;
+    }
+     
+    public static void main(String[] args) {
+        new Hero();
+    }
+      
+}
+```
+
+
+
+ 步骤 **4** : 
+
+##### 子类显式调用父类带参构造方法
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+使用关键字**super** 显式调用父类带参的构造方法
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class ADHero extends Hero implements AD{
+  
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+     
+    public ADHero(String name){
+        super(name);
+        System.out.println("AD Hero的构造方法");
+    }
+     
+    public static void main(String[] args) {
+        new ADHero("德莱文");
+    }
+  
+}
+```
+
+
+
+ 步骤 **5** : 
+
+##### 调用父类属性
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+通过super调用父类的moveSpeed属性
+ADHero也提供了属性moveSpeed
+
+ 
+
+public int getMoveSpeed(){
+
+   return this.moveSpeed;
+
+}
+
+public int getMoveSpeed2(){
+
+   return super.moveSpeed;
+
+}
+
+ 
+
+代码比较复制代码
+
+```java
+package charactor;
+  
+public class ADHero extends Hero implements AD{
+ 
+    int moveSpeed=400; //移动速度
+ 
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+     
+    public int getMoveSpeed(){
+        return this.moveSpeed;
+    }
+     
+    public int getMoveSpeed2(){
+        return super.moveSpeed;
+    }
+     
+    public static void main(String[] args) {
+        ADHero h= new ADHero();
+         
+        System.out.println(h.getMoveSpeed());
+        System.out.println(h.getMoveSpeed2());
+         
+    }
+  
+}
+```
+
+
+
+
+
+ 步骤 **6** : 
+
+##### 调用父类方法
+
+[**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+ADHero重写了useItem方法，并且在useItem中**通过super调用父类的useItem方法**
+
+代码比较复制代码
+
+```java
+package charactor;
+ 
+import property.Item;
+import property.LifePotion;
+ 
+public class ADHero extends Hero implements AD {
+ 
+    int moveSpeed = 400; // 移动速度
+ 
+    @Override
+    public void physicAttack() {
+        System.out.println("进行物理攻击");
+    }
+ 
+    public int getMoveSpeed() {
+        return this.moveSpeed;
+    }
+ 
+    public int getMoveSpeed2() {
+        return super.moveSpeed;
+    }
+ 
+    // 重写useItem，并在其中调用父类的userItem方法
+    public void useItem(Item i) {
+        System.out.println("adhero use item");
+        super.useItem(i);
+    }
+ 
+    public static void main(String[] args) {
+        ADHero h = new ADHero();
+ 
+        LifePotion lp = new LifePotion();
+ 
+    }
+ 
+}
+```
+
+
+
+ 步骤 **7** : 
+
+##### 练习-super 
+
+  [**顶**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#)[**折**](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/interface-inheritance/interface-inheritance-super/311.html#nowhere)
+
+父类Hero提供了一个有参的构造方法:
+
+ 
+
+public Hero(String name){
+
+  this.name = name;
+
+}
+
+ 
+
+
+但是没有提供无参的构造方法
+子类应该怎么处理？
+
+代码比较复制代码
+
+```java
+package charactor;
+   
+public class Hero {
+    public String name;
+    protected float hp;
+   
+    public Hero(String name){
+        this.name = name;
+    }
+     
+//    故意不提供无参的构造方法
+//    public Hero(){
+//     
+//    }
+     
+    public static void main(String[] args) {
+     
+    }
+       
+}
+```
+
+#### object类
+
+#### final
+
+#### 抽象类
+
+#### 内部类
+
+#### 默认方法
+
+#### 综合练习
+
