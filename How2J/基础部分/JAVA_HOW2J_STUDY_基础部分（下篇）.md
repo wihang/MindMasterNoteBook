@@ -2251,3 +2251,4 @@ public class MyStringBuffer implements IStringBuffer{
 
 性能统计办法 参考 [比较StringBuffer和String的性能](https://how2j.cn/k/number-string/number-string-stringbuilder/328.html#step2368)
 如果追加的次数太大，会导致内存不够使用(默认情况下是分配16m)，你会看到**OutOfMemoryError** 这样的错误。 调整的方式参考 [JVM调试与设置 设置最大内存](https://how2j.cn/k/records/records-jvm/372.html)
+
