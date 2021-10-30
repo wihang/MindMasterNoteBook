@@ -1,0 +1,9 @@
+实施需要电路方面知识
+
+测试就是 jmeter mysql
+
+然后功能性测试
+
+python
+
+mysql调优 jmeter docker linux这些属于必备技能
