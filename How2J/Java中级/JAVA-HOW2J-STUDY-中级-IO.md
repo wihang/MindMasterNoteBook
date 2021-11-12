@@ -529,17 +529,787 @@ eclipse.exe-3
 
 ## I/O 关闭流的方式
 
-## I/O 字符流
+所有的流，无论是输入流还是输出流，使用完毕之后，都应该关闭。 如果不关闭，会产生对资源占用的浪费。 当量比较大的时候，会影响到业务的正常开展。
 
-## I/O 中文问题
+### 在try中关闭
+
+[**顶**](https://how2j.cn/k/io/io-closestream/682.html#)[**折**](https://how2j.cn/k/io/io-closestream/682.html#nowhere)
+
+在try的作用域里关闭文件输入流，在前面的示例中都是使用这种方式，这样做有一个弊端；
+如果文件不存在，或者读取的时候出现问题而抛出异常，那么就不会执行这一行关闭流的代码，存在巨大的资源占用隐患。 **不推荐**使用
+
+代码比较复制代码
+
+```JAVA
+package stream;
+ 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+ 
+public class TestStream {
+ 
+    public static void main(String[] args) {
+        try {
+            File f = new File("d:/lol.txt");
+            FileInputStream fis = new FileInputStream(f);
+            byte[] all = new byte[(int) f.length()];
+            fis.read(all);
+            for (byte b : all) {
+                System.out.println(b);
+            }
+            // 在try 里关闭流
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+ 
+    }
+}
+```
+
+
+
+
+
+ 步骤 **2** : 
+
+### 在finally中关闭
+
+[**顶**](https://how2j.cn/k/io/io-closestream/682.html#)[**折**](https://how2j.cn/k/io/io-closestream/682.html#nowhere)
+
+这是标准的关闭流的方式
+\1. 首先把流的引用声明在try的外面，如果声明在try里面，其作用域无法抵达finally.
+\2. 在finally关闭之前，要先判断该引用是否为空
+\3. 关闭的时候，需要再一次进行try catch处理
+
+这是标准的严谨的关闭流的方式，但是看上去很繁琐，所以写不重要的或者测试代码的时候，都会采用上面的**有隐患**try的方式，因为不麻烦~
+
+代码比较复制代码
+
+```JAVA
+package stream;
+ 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+ 
+public class TestStream {
+ 
+    public static void main(String[] args) {
+        File f = new File("d:/lol.txt");
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream(f);
+            byte[] all = new byte[(int) f.length()];
+            fis.read(all);
+            for (byte b : all) {
+                System.out.println(b);
+            }
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // 在finally 里关闭流
+            if (null != fis)
+                try {
+ 
+                    fis.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+        }
+ 
+    }
+}
+```
+
+
+
+
+
+ 步骤 **3** : 
+
+### 使用try()的方式
+
+[**顶**](https://how2j.cn/k/io/io-closestream/682.html#)[**折**](https://how2j.cn/k/io/io-closestream/682.html#nowhere)
+
+把流定义在try()里,try,catch或者finally结束的时候，会自动关闭
+这种编写代码的方式叫做 **try-with-resources**， 这是从JDK7开始支持的技术
+
+所有的流，都实现了一个接口叫做 **AutoCloseable**，任何类实现了这个接口，都可以在try()中进行实例化。 并且在try, catch, finally结束的时候自动关闭，回收相关资源。
+
+```JAVA
+package stream;
+  
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+  
+public class TestStream {
+  
+    public static void main(String[] args) {
+        File f = new File("d:/lol.txt");
+  
+        //把流定义在try()里,try,catch或者finally结束的时候，会自动关闭
+        try (FileInputStream fis = new FileInputStream(f)) {
+            byte[] all = new byte[(int) f.length()];
+            fis.read(all);
+            for (byte b : all) {
+                System.out.println(b);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+  
+    }
+}
+```
+
+
+
+### I/O 字符流
+
+Reader字符输入流
+Writer字符输出流
+专门用于字符的形式读取和写入数据
+
+### I/O 中文问题
+
+ 步骤 **1** : 
+
+### 使用字符流读取文件
+
+[**顶**](https://how2j.cn/k/io/io-characterstream/341.html#)[**折**](https://how2j.cn/k/io/io-characterstream/341.html#nowhere)
+
+FileReader 是Reader子类，以FileReader 为例进行文件读取
+
+代码比较复制代码
+
+```java
+package stream;
+ 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+ 
+public class TestStream {
+ 
+    public static void main(String[] args) {
+        // 准备文件lol.txt其中的内容是AB
+        File f = new File("d:/lol.txt");
+        // 创建基于文件的Reader
+        try (FileReader fr = new FileReader(f)) {
+            // 创建字符数组，其长度就是文件的长度
+            char[] all = new char[(int) f.length()];
+            // 以字符流的形式读取文件所有内容
+            fr.read(all);
+            for (char b : all) {
+                // 打印出来是A B
+                System.out.println(b);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+ 
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+### 使用字符流把字符串写入到文件
+
+[**顶**](https://how2j.cn/k/io/io-characterstream/341.html#)[**折**](https://how2j.cn/k/io/io-characterstream/341.html#nowhere)
+
+FileWriter 是Writer的子类，以FileWriter 为例把字符串写入到文件
+
+![使用字符流把字符串写入到文件](https://stepimagewm.how2j.cn/2432.png)
+
+```java
+package stream;
+  
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+  
+public class TestStream {
+  
+    public static void main(String[] args) {
+        // 准备文件lol2.txt
+        File f = new File("d:/lol2.txt");
+        // 创建基于文件的Writer
+        try (FileWriter fr = new FileWriter(f)) {
+            // 以字符流的形式把数据写入到文件中
+            String data="abcdefg1234567890";
+            char[] cs = data.toCharArray();
+            fr.write(cs);
+  
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+  
+    }
+}
+```
+
+
+
+
+
+ 步骤 **3** : 
+
+### 练习-文件加密 
+
+  [**顶**](https://how2j.cn/k/io/io-characterstream/341.html#)[**折**](https://how2j.cn/k/io/io-characterstream/341.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/io/io-characterstream/341.html#nowhere)
+
+准备一个**文本文件**(非二进制)，其中包含[ASCII码](https://how2j.cn/k/io/io-bytestream/340.html#step766)的字符和中文字符。
+设计一个方法
+
+ 
+
+public static void encodeFile(File encodingFile, File encodedFile);
+
+ 
+
+
+在这个方法中把encodingFile的内容进行加密，然后保存到encodedFile文件中。
+加密算法：
+数字：
+如果不是9的数字，在原来的基础上加1，比如5变成6, 3变成4
+如果是9的数字，变成0
+字母字符：
+如果是非z字符，向右移动一个，比如d变成e, G变成H
+如果是z，z->a, Z-A。
+字符需要保留大小写
+非字母字符
+比如',&^ 保留不变，中文也保留不变
+**建议：** 使用以前学习的练习题中的某个Java文件，比如循环练习，就有很多的字符和数字
+
+![练习-文件加密](https://stepimagewm.how2j.cn/2434.png)
+
+
+
+### 练习-文件解密 
+
+  [**顶**](https://how2j.cn/k/io/io-characterstream/341.html#)[**折**](https://how2j.cn/k/io/io-characterstream/341.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/io/io-characterstream/341.html#nowhere)
+
+解密在[文件加密](https://how2j.cn/k/io/io-characterstream/341.html#step2434)中生成的文件。
+设计一个方法
+
+ 
+
+public static void decodeFile(File decodingFile, File decodedFile);
+
+ 
+
+
+在这个方法中把decodingFile的内容进行解密，然后保存到decodedFile文件中。
+解密算法：
+数字：
+如果不是0的数字，在原来的基础上减1，比如6变成5, 4变成3
+如果是0的数字，变成9
+字母字符：
+如果是非a字符，向左移动一个，比如e变成d, H变成G
+如果是a，a->z, A-Z。
+字符需要保留大小写
+非字母字符：
+比如',&^ 保留不变，中文也保留不变
 
 ## I/O 缓存流
 
+ 示例 **1** : 
+
+### 使用缓存流读取数据
+
+[**顶**](https://how2j.cn/k/io/io-bufferedstream/342.html#)[**折**](https://how2j.cn/k/io/io-bufferedstream/342.html#nowhere)
+
+缓存字符输入流 BufferedReader 可以一次读取一行数据
+
+代码比较复制代码
+
+```java
+package stream;
+  
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+  
+public class TestStream {
+  
+    public static void main(String[] args) {
+        // 准备文件lol.txt其中的内容是
+        // garen kill teemo
+        // teemo revive after 1 minutes
+        // teemo try to garen, but killed again
+        File f = new File("d:/lol.txt");
+        // 创建文件字符流
+        // 缓存流必须建立在一个存在的流的基础上
+        try (
+                FileReader fr = new FileReader(f);
+                BufferedReader br = new BufferedReader(fr);
+            )
+        {
+            while (true) {
+                // 一次读一行
+                String line = br.readLine();
+                if (null == line)
+                    break;
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+  
+    }
+}
+```
+
+
+
+ 示例 **2** : 
+
+### 使用缓存流写出数据
+
+[**顶**](https://how2j.cn/k/io/io-bufferedstream/342.html#)[**折**](https://how2j.cn/k/io/io-bufferedstream/342.html#nowhere)
+
+PrintWriter 缓存字符输出流， 可以一次写出一行数据
+
+代码比较复制代码
+
+```java
+package stream;
+   
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+   
+public class TestStream {
+   
+    public static void main(String[] args) {
+        // 向文件lol2.txt中写入三行语句
+        File f = new File("d:/lol2.txt");
+          
+        try (
+                // 创建文件字符流
+                FileWriter fw = new FileWriter(f);
+                // 缓存流必须建立在一个存在的流的基础上              
+                PrintWriter pw = new PrintWriter(fw);              
+        ) {
+            pw.println("garen kill teemo");
+            pw.println("teemo revive after 1 minutes");
+            pw.println("teemo try to garen, but killed again");
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+   
+    }
+}
+```
+
+
+
+ 示例 **3** : 
+
+### flush
+
+[**顶**](https://how2j.cn/k/io/io-bufferedstream/342.html#)[**折**](https://how2j.cn/k/io/io-bufferedstream/342.html#nowhere)
+
+有的时候，需要**立即把数据写入到硬盘**，而不是等缓存满了才写出去。 这时候就需要用到flush
+
+代码比较复制代码
+
+```java
+package stream;
+    
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+public class TestStream {
+    public static void main(String[] args) {
+        //向文件lol2.txt中写入三行语句
+        File f =new File("d:/lol2.txt");
+        //创建文件字符流
+        //缓存流必须建立在一个存在的流的基础上
+        try(FileWriter fr = new FileWriter(f);PrintWriter pw = new PrintWriter(fr);) {
+            pw.println("garen kill teemo");
+            //强制把缓存中的数据写入硬盘，无论缓存是否已满
+                pw.flush();           
+            pw.println("teemo revive after 1 minutes");
+                pw.flush();
+            pw.println("teemo try to garen, but killed again");
+                pw.flush();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+ 示例 **4** : 
+
+### 练习-移除注释 
+
+  [**顶**](https://how2j.cn/k/io/io-bufferedstream/342.html#)[**折**](https://how2j.cn/k/io/io-bufferedstream/342.html#nowhere) 姿势不对,事倍功半! [点击查看做练习的正确姿势](https://how2j.cn/k/io/io-bufferedstream/342.html#nowhere)
+
+设计一个方法，用于移除Java文件中的注释
+
+ 
+
+public void removeComments(File javaFile)
+
+ 
+
+
+比如，移出以//开头的注释行
+
+ 
+
+File f = new File("d:/LOLFolder/LOL.exe");
+
+System.out.println("当前文件是：" +f);
+
+//文件是否存在
+
+System.out.println("判断是否存在："+f.exists());
+
+//是否是文件夹
+
+System.out.println("判断是否是文件夹："+f.isDirectory());
+
+ 
+
 ## I/O 数据流
+
+DataInputStream 数据输入流
+DataOutputStream 数据输出流
+
+
+
+ 步骤 **1** : 
+
+### 直接进行字符串的读写
+
+[**顶**](https://how2j.cn/k/io/io-datastream/350.html#)[**折**](https://how2j.cn/k/io/io-datastream/350.html#nowhere)
+
+使用数据流的writeUTF()和readUTF() 可以进行数据的**格式化顺序读写**
+如本例，通过DataOutputStream 向文件顺序写出 布尔值，整数和字符串。 然后再通过DataInputStream 顺序读入这些数据。
+
+**注：** 要用DataInputStream 读取一个文件，这个文件必须是由DataOutputStream 写出的，否则会出现EOFException，因为DataOutputStream 在写出的时候会做一些特殊标记，只有DataInputStream 才能成功的读取。
+
+![直接进行字符串的读写](https://stepimagewm.how2j.cn/771.png)
+
+代码比较复制代码
+
+```java
+package stream;
+      
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+      
+public class TestStream {
+      
+    public static void main(String[] args) {
+        write();
+        read();
+    }
+ 
+    private static void read() {
+        File f =new File("d:/lol.txt");
+        try (
+                FileInputStream fis  = new FileInputStream(f);
+                DataInputStream dis =new DataInputStream(fis);
+        ){
+            boolean b= dis.readBoolean();
+            int i = dis.readInt();
+            String str = dis.readUTF();
+             
+            System.out.println("读取到布尔值:"+b);
+            System.out.println("读取到整数:"+i);
+            System.out.println("读取到字符串:"+str);
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         
+    }
+ 
+    private static void write() {
+        File f =new File("d:/lol.txt");
+        try (
+                FileOutputStream fos  = new FileOutputStream(f);
+                DataOutputStream dos =new DataOutputStream(fos);
+        ){
+            dos.writeBoolean(true);
+            dos.writeInt(300);
+            dos.writeUTF("123 this is gareen");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         
+    }
+}
+```
+
+
+
+ 步骤 **2** : 
+
+练习-向文件中写入两个数字，然后把这两个数字分别读取出来 
+
+要求
+第一种方式： 使用[缓存流](https://how2j.cn/k/io/io-bufferedstream/342.html)把两个数字以字符串的形式写到文件里，再用[缓存流](https://how2j.cn/k/io/io-bufferedstream/342.html)以字符串的形式读取出来，然后转换为两个数字。
+**注：** 两个数字之间要有分隔符用于区分这两个数字。 比如数字是31和15，如果不使用分隔符，那么就是3115，读取出来就无法识别到底是哪两个数字。 使用分隔符31@15能解决这个问题。
+
+第二种方式： 使用数据流DataOutputStream向文件连续写入两个数字，然后用DataInpuStream连续读取两个数字
+
+---
+
+
 
 ## I/O 对象流
 
-## I/O System.in
+对象流指的是可以直接**把一个对象以流的形式**传输给其他的介质，比如硬盘
+
+一个对象以流的形式进行传输，叫做序列化。 该对象所对应的类，必须是实现Serializable接口
+
+
+
+ 步骤 **1** : 
+
+### 序列化一个对象
+
+[**顶**](https://how2j.cn/k/io/io-objectstream/351.html#)[**折**](https://how2j.cn/k/io/io-objectstream/351.html#nowhere)
+
+创建一个Hero对象，设置其名称为garen。
+把该对象序列化到一个文件garen.lol。
+然后再通过序列化把该文件转换为一个Hero对象
+
+**注：**把一个对象序列化有一个前提是：这个对象的类，必须实现了Serializable接口
+
+- [TestStream.java](https://how2j.cn/k/io/io-objectstream/351.html#nowhere)
+
+- ```java
+  package stream;
+      
+  import java.io.File;
+  import java.io.FileInputStream;
+  import java.io.FileOutputStream;
+  import java.io.IOException;
+  import java.io.ObjectInputStream;
+  import java.io.ObjectOutputStream;
+    
+  import charactor.Hero;
+      
+  public class TestStream {
+      
+      public static void main(String[] args) {
+          //创建一个Hero garen
+          //要把Hero对象直接保存在文件上，务必让Hero类实现Serializable接口
+          Hero h = new Hero();
+          h.name = "garen";
+          h.hp = 616;
+            
+          //准备一个文件用于保存该对象
+          File f =new File("d:/garen.lol");
+   
+          try(
+              //创建对象输出流
+              FileOutputStream fos = new FileOutputStream(f);
+              ObjectOutputStream oos =new ObjectOutputStream(fos);
+              //创建对象输入流              
+              FileInputStream fis = new FileInputStream(f);
+              ObjectInputStream ois =new ObjectInputStream(fis);
+          ) {
+              oos.writeObject(h);
+              Hero h2 = (Hero) ois.readObject();
+              System.out.println(h2.name);
+              System.out.println(h2.hp);
+                 
+          } catch (IOException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          } catch (ClassNotFoundException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+          }
+              
+      }
+  }
+  ```
+
+- [Hero.java](https://how2j.cn/k/io/io-objectstream/351.html#nowhere)
+
+- ```java
+  	 
+  import java.io.Serializable;
+   
+  public class Hero implements Serializable {
+      //表示这个类当前的版本，如果有了变化，比如新设计了属性，就应该修改这个版本号
+      private static final long serialVersionUID = 1L;
+      public String name;
+      public float hp;
+   
+  }
+  ```
+
+
+
+
+
+ 步骤 **2** : 
+
+### 练习-序列化数组   
+
+
+
+准备一个长度是10，类型是Hero的数组，使用10个Hero对象初始化该数组
+
+然后把该数组序列化到一个文件heros.lol
+
+接着使用ObjectInputStream 读取该文件，并转换为Hero数组，验证该数组中的内容，是否和序列化之前一样
+
+![练习-序列化数组](https://stepimagewm.how2j.cn/2442.png)
+
+### I/O System.in
+
+System.out 是常用的在控制台输出数据的
+System.in 可以从控制台输入数据
+
+ 步骤 **1** : 
+
+## System.in	
+
+```java
+package stream;
+ 
+import java.io.IOException;
+import java.io.InputStream;
+ 
+public class TestStream {
+ 
+    public static void main(String[] args) {
+        // 控制台输入
+        try (InputStream is = System.in;) {
+            while (true) {
+                // 敲入a,然后敲回车可以看到
+                // 97 13 10
+                // 97是a的ASCII码
+                // 13 10分别对应回车换行
+                int i = is.read();
+                System.out.println(i);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+}
+
+ 步骤 **2** : 
+
+### Scanner读取字符串
+
+[**顶**](https://how2j.cn/k/io/io-system-in/352.html#)[**折**](https://how2j.cn/k/io/io-system-in/352.html#nowhere)
+
+使用System.in.read虽然可以读取数据，但是很不方便
+使用Scanner就可以逐行读取了
+
+代码比较复制代码
+
+```java
+package stream;
+    
+import java.util.Scanner;
+    
+public class TestStream {
+    
+    public static void main(String[] args) {
+         
+            Scanner s = new Scanner(System.in);
+             
+            while(true){
+                String line = s.nextLine();
+                System.out.println(line);
+            }
+         
+    }
+}
+```
+
+
+
+ 步骤 **3** : 
+
+### Scanner从控制台读取整数
+
+[**顶**](https://how2j.cn/k/io/io-system-in/352.html#)[**折**](https://how2j.cn/k/io/io-system-in/352.html#nowhere)
+
+使用Scanner从控制台读取整数
+
+![Scanner从控制台读取整数](https://stepimagewm.how2j.cn/2142.png)
+
+代码比较复制代码
+
+```java
+package stream;
+ 
+import java.util.Scanner;
+ 
+public class TestStream {
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        int a = s.nextInt();
+        System.out.println("第一个整数："+a);
+        int b = s.nextInt();
+        System.out.println("第二个整数："+b);
+    }
+}
+```
+
+
+
+ 步骤 **4** : 
+
+### 练习-自动创建类 
+
+自动创建有一个属性的类文件。
+通过控制台，获取类名，属性名称，属性类型，根据一个模板文件，自动创建这个类文件，并且为属性提供setter和getter
+
+![练习-自动创建类](https://stepimagewm.how2j.cn/2444.png)
+
+```java
+public class @class@ {
+    public @type@ @property@;
+    public @class@() {
+    }
+    public void set@Uproperty@(@type@  @property@){
+        this.@property@ = @property@;
+    }
+      
+    public @type@  get@Uproperty@(){
+        return this.@property@;
+    }
+}
+```
 
 
 
