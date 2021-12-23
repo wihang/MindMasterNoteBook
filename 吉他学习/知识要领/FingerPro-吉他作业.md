@@ -21,7 +21,9 @@
 
 
 
-<video src="C:\Users\user\Desktop\吉他学习\视频\小星星.mp4"></video>
+<video src="..\视频\小星星.mp4"></video>
+
+
 
 #### 2.《欢乐颂》
 
@@ -31,7 +33,9 @@
 
 ##### 视频演示：
 
-<video src="C:\Users\user\Desktop\吉他学习\视频\欢乐颂.mp4"></video>
+<video src="..\视频\欢乐颂.mp4"></video>
+
+
 
 #### 3.《斑马斑马》——简单和弦版
 
@@ -68,7 +72,7 @@
 
 
 
-<video src="C:\Users\user\Desktop\吉他学习\视频\同桌的你.mp4"></video>
+<video src="..\视频\同桌的你.mp4"></video>
 
 #### 2.《城里的月光》
 
@@ -78,11 +82,11 @@
 
 ##### 视频讲解：
 
-<video src="C:\Users\user\Desktop\吉他学习\视频\城里的月光.mp4"></video>
-
-
+<video src="..\视频\城里的月光.mp4"></video>
 
 #### 3.《少年锦时》
+
+
 
 ![image-20211211101646037](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211211101646037.png)
 
@@ -128,7 +132,45 @@
 
 ##### 视频演示：
 
-<video src="C:\Users\user\Desktop\吉他学习\视频\旅行的意义.mp4"></video>
+<video src="../视频/旅行的意义.mp4"></video>
+
+
 
 ---
+
+### 第四周作业
+
+#### 1.天空之城
+
+##### 曲谱：
+
+![image-20211215141533402](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141533402.png)
+
+![image-20211215141600835](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141600835.png)
+
+##### 视频演示：
+
+<video src="C:\Users\user\Desktop\XYNoteBook\吉他学习\视频\天空之城.mp4"></video>
+
+
+
+#### 2.《永隔一江水》-课程16章节
+
+##### 曲谱：
+
+![image-20211215141753812](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141753812.png)
+
+![image-20211215141819715](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141819715.png)
+
+#### 3.《拥抱》
+
+##### 曲谱:
+
+![image-20211215141948850](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141948850.png)
+
+![image-20211215141959061](C:\Users\user\AppData\Roaming\Typora\typora-user-images\image-20211215141959061.png)
+
+##### 视频演示：
+
+<video src="../%E8%A7%86%E9%A2%91/%E6%8B%A5%E6%8A%B1.mp4"></video>
 
